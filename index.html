@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,8 +8,8 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: #0f2027; /* Fondo sólido de respaldo */
+            font-family: sans-serif;
+            background: #0f2027;
             background: radial-gradient(circle, #203a43, #0f2027);
             color: white;
             display: flex;
@@ -20,88 +19,80 @@
             overflow: hidden;
         }
 
-        /* Contenedor principal */
         .contenedor {
-            width: 85%;
-            max-width: 400px;
+            width: 90%;
+            max-width: 380px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 25px;
-            backdrop-filter: blur(15px);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
-            z-index: 10;
+            z-index: 100; /* Asegura que esté por encima de los corazones */
         }
 
         .seccion { display: none; }
-        .activa { display: block; animation: fadeIn 0.5s; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .activa { display: block; }
 
         .foto {
             width: 100%;
-            height: 180px;
-            object-fit: cover;
+            height: auto;
+            max-height: 200px;
             border-radius: 15px;
             margin-bottom: 15px;
-            border: 2px solid #00c6ff;
+            object-fit: cover;
+            display: block;
         }
 
         button {
-            padding: 12px 25px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             background: #00c6ff;
             color: white;
             font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
-            margin: 10px auto;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0, 198, 255, 0.3);
+            font-size: 18px;
+            margin: 20px auto;
+            display: inline-block;
+            touch-action: manipulation; /* Optimizado para celulares */
         }
 
         .area-botones {
+            position: relative;
+            min-height: 120px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            min-height: 100px;
-            position: relative;
+            gap: 10px;
         }
 
         #btnNo {
             background: #ff4b2b;
-            margin: 0;
             position: relative;
-            transition: 0.2s;
+            z-index: 101;
         }
 
         .recuerdo {
             background: rgba(0, 198, 255, 0.1);
-            margin: 8px 0;
+            margin: 10px 0;
             padding: 10px;
             border-radius: 10px;
             font-size: 14px;
             text-align: left;
-            border-left: 3px solid #00c6ff;
+            border-left: 4px solid #00c6ff;
         }
 
         .corazon {
             position: absolute;
-            color: #00c6ff;
-            pointer-events: none;
+            color: rgba(0, 198, 255, 0.5);
+            pointer-events: none; /* Crucial: para que no bloqueen clics */
             animation: subir 5s linear infinite;
-            z-index: 1;
         }
 
         @keyframes subir {
-            from { transform: translateY(100vh); opacity: 1; }
-            to { transform: translateY(-10vh); opacity: 0; }
+            from { transform: translateY(110vh); }
+            to { transform: translateY(-10vh); }
         }
     </style>
 </head>
@@ -114,10 +105,10 @@
     <div class="contenedor">
         
         <div id="p1" class="seccion activa">
-            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
+            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto" onerror="this.style.display='none'">
             <h2>Para José Alberto 💙</h2>
             <p>Tengo algo especial que decirte...</p>
-            <button onclick="cambiar(1, 2)">Abrir 💙</button>
+            <button onclick="cambiar(1, 2)">Entrar 💙</button>
         </div>
 
         <div id="p2" class="seccion">
@@ -125,35 +116,17 @@
             <p>¿Quieres ser mi San Valentín? 💙</p>
             <div class="area-botones">
                 <button onclick="cambiar(2, 3)">SÍ 😍</button>
-                <button id="btnNo" onmouseover="mover()">No</button>
+                <button id="btnNo" onmouseover="mover()" onclick="mover()">No</button>
             </div>
         </div>
 
         <div id="p3" class="seccion">
             <h2 style="color:#00c6ff">Mi Amor...</h2>
-            <p style="font-style: italic; font-size: 15px;">"Eres mi paz, mi lugar favorito y el amor más bonito que la vida me regaló."</p>
+            <p><i>"Eres mi paz y el amor más bonito que la vida me regaló."</i></p>
             <button onclick="cambiar(3, 4)">Continuar 👇</button>
         </div>
 
         <div id="p4" class="seccion">
             <h3>Lo que más amo 💙</h3>
             <div class="recuerdo">✨ Tus abrazos que me protegen.</div>
-            <div class="recuerdo">✨ Cómo me haces reír siempre.</div>
-            <div class="recuerdo">✨ Tu forma única de quererme.</div>
-            <button onclick="cambiar(4, 5)">Algo más... 💙</button>
-        </div>
-
-        <div id="p5" class="seccion">
-            <h1 style="color:#00c6ff">¡TE AMO!</h1>
-            <p>Gracias por estar en mi vida, mi amor.</p>
-            <div style="font-size: 40px;">👩‍❤️‍👨</div>
-            <p><b>Feliz San Valentín</b></p>
-        </div>
-
-    </div>
-
-    <script>
-        function cambiar(actual, siguiente) {
-            // Reproducir música
-            const audio = document.getElementById("musica");
-            audio
+            <div class="recuerdo">✨ Cómo me haces
