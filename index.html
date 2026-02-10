@@ -5,80 +5,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para José Alberto 💙</title>
     <style>
-        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle, #203a43, #0f2027); color: white; text-align: center; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; }
-        .pantalla { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.8s ease; }
-        .oculta { opacity: 0; pointer-events: none; transform: scale(0.8); }
-        .carta { max-width: 450px; width: 85%; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 30px; backdrop-filter: blur(20px); box-shadow: 0 0 40px rgba(0, 198, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); max-height: 85vh; overflow-y: auto; }
-        .recuerdo-item { background: rgba(0, 198, 255, 0.05); margin: 12px 0; padding: 15px; border-radius: 15px; border-left: 4px solid #00c6ff; text-align: left; font-size: 14px; line-height: 1.5; }
-        button { padding: 14px 30px; border: none; border-radius: 50px; background: linear-gradient(45deg, #00c6ff, #0072ff); color: white; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px; margin-top: 15px; }
-        #btnNo { background: #ff4b2b; position: relative; }
-        .corazon { position: absolute; pointer-events: none; animation: subir 6s linear infinite; z-index: -1; }
-        @keyframes subir { 0% { transform: translateY(110vh) scale(0); opacity: 0; } 50% { opacity: 0.6; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pantalla {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, transform 0.8s ease;
+        }
+
+        .oculta {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        .carta {
+            max-width: 500px;
+            width: 85%;
+            background: rgba(255, 255, 255, 0.07);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .foto-perfil {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #00c6ff;
+            box-shadow: 0 0 25px rgba(0, 198, 255, 0.4);
+        }
+
+        h1, h2 { color: #00c6ff; text-shadow: 0 0 10px rgba(0, 198, 255, 0.3); }
+
+        p { font-size: 16px; line-height: 1.6; color: #f0f0f0; }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+        }
+
+        button:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5); }
+
+        #btnNo {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ff4b2b;
+            color: #ff4b2b;
+            transition: 0.2s;
+        }
+
+        .corazon {
+            position: absolute;
+            color: #00c6ff;
+            animation: subir 5s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+
+        .stats {
+            background: rgba(0, 198, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(0, 198, 255, 0.3);
+        }
     </style>
 </head>
 <body>
 
     <audio id="musica" loop>
-        <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-The-Piano-Plays-Softly.mp3" type="audio/mpeg">
+        <source src="https://docs.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Para José Alberto 💙</h2>
-            <p>He guardado algo muy especial aquí dentro...</p>
-            <button onclick="iniciar()">Entrar con amor 💙</button>
+            <img src="https://docs.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" alt="Nosotros" class="foto-perfil">
+            <h2>Para ti, José Alberto 💙</h2>
+            <p>Desde que llegaste a mi vida todo cambió…</p>
+            <p>Tu forma de ser, tu cariño y tu protección me hacen sentir la persona más afortunada. 🫂</p>
+            <button onclick="comenzar()">Abrir con amor 💙</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
+            <h1 style="font-size: 50px;">💍</h1>
             <h2>José Alberto...</h2>
-            <p>¿Quieres ser mi San Valentín este año? 💙</p>
-            <button onclick="aceptar()">¡SÍ! 😍</button>
-            <button id="btnNo" onmouseover="mover()">No</button>
+            <p style="font-size: 20px;">¿Me harías el honor de ser mi <br><b>San Valentín</b> este año? 💙</p>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button onclick="aceptar()">¡SÍ! 😍</button>
+                <button id="btnNo" onmouseover="moverBoton()">No</button>
+            </div>
         </div>
     </div>
 
     <div id="p3" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Mi Amor Eterno...</h2>
-            <p style="text-align: left; font-style: italic;">Eres lo mejor que me ha pasado. Gracias por ser mi apoyo, mi paz y mi alegría. Nadie me hace sentir tan especial como tú lo haces.</p>
-            <button onclick="navegar('p3', 'p4')">¿Por qué estamos juntos? 👇</button>
+            <h1>💙 296 Días 💙</h1>
+            <div class="stats">
+                <p>Llevamos <b>296 días</b> construyendo nuestra historia. <br>
+                Cada segundo a tu lado ha valido la pena.</p>
+            </div>
+            <p>Eres mi paz, mi persona favorita y el amor más bonito que tengo. Gracias por cuidarme siempre. ✨</p>
+            <button onclick="navegar('p3', 'p4')">Nuestra Promesa ♾️</button>
         </div>
     </div>
 
     <div id="p4" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Razones por las que te amo</h2>
-            <div class="recuerdo-item">✨ <b>Tu Paz:</b> Eres mi refugio en los días difíciles.</div>
-            <div class="recuerdo-item">✨ <b>Tu Risa:</b> Me haces feliz incluso sin intentarlo.</div>
-            <div class="recuerdo-item">✨ <b>Nosotros:</b> Porque somos el mejor equipo del mundo.</div>
-            <button onclick="navegar('p4', 'p5')">Final 💙</button>
-        </div>
-    </div>
-
-    <div id="p5" class="pantalla oculta">
-        <div class="carta">
-            <h1>¡TE AMO! 💙</h1>
-            <p>Feliz San Valentín, mi vida.</p>
+            <h1 style="font-size: 60px;">👨‍❤️‍👨</h1>
+            <h2>Siempre tú y yo</h2>
+            <p>Prometo estar para ti en cada paso, <br>amarte y respetarte hoy y siempre.</p>
+            <h2 style="font-size: 30px; margin-top: 30px;">¡TE AMO MUCHO! 💙</h2>
+            <p>Feliz San Valentín, mi vida entera.</p>
         </div>
     </div>
 
     <script>
-        function iniciar() { document.getElementById('musica').play(); navegar('p1', 'p2'); }
-        function navegar(a, s) { document.getElementById(a).classList.add('oculta'); document.getElementById(s).classList.remove('oculta'); }
-        function aceptar() { alert("¡Sabía que dirías que sí! Eres lo mejor de mi vida. 😍💙"); navegar('p2', 'p3'); }
-        function mover() { 
-            const b = document.getElementById('btnNo');
-            b.style.top = Math.random() * 80 + "%";
-            b.style.left = Math.random() * 80 + "%";
+        const audio = document.getElementById('musica');
+
+        function comenzar() {
+            audio.play().catch(e => console.log("Audio activo"));
+            navegar('p1', 'p2');
         }
+
+        function navegar(actual, siguiente) {
+            document.getElementById(actual).classList.add('oculta');
+            document.getElementById(siguiente).classList.remove('oculta');
+        }
+
+        function aceptar() {
+            alert("¡Sabía que dirías que sí! No te imaginas lo feliz que me haces. 😍💙");
+            navegar('p2', 'p3');
+        }
+
+        function moverBoton() {
+            const btn = document.getElementById('btnNo');
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
         setInterval(() => {
             const c = document.createElement("div");
-            c.className = "corazon"; c.innerHTML = "💙";
+            c.className = "corazon";
+            c.innerHTML = "💙";
             c.style.left = Math.random() * 100 + "vw";
+            c.style.fontSize = (Math.random() * 20 + 10) + "px";
             document.body.appendChild(c);
-            setTimeout(() => c.remove(), 6000);
+            setTimeout(() => c.remove(), 5000);
         }, 300);
     </script>
 </body>
