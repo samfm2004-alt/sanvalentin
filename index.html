@@ -2,195 +2,148 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para José Alberto 💙</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 body{
-margin:0;
-height:100vh;
-background: radial-gradient(circle at top,#0a2a66,#020a1f,#000814);
-font-family:'Montserrat',sans-serif;
-color:white;
-overflow:hidden;
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    text-align:center;
+    overflow:hidden;
 }
 
-/* INTRO */
-#intro{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-z-index:999;
-font-size:22px;
+/* Pantallas */
+.pantalla{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transition:opacity 1s;
 }
 
-/* estrellas */
-.star{
-position:absolute;
-width:2px;
-height:2px;
-background:white;
-animation:twinkle 2s infinite alternate;
-}
-@keyframes twinkle{from{opacity:.2;}to{opacity:1;}}
-
-/* corazones */
-.heart{
-position:absolute;
-font-size:20px;
-animation:floatUp 6s linear infinite;
-}
-@keyframes floatUp{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-10vh);opacity:0;}
+.oculta{
+    opacity:0;
+    pointer-events:none;
 }
 
-.container{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#ffffff10;
-padding:25px;
-border-radius:18px;
-backdrop-filter:blur(10px);
-box-shadow:0 0 30px #00000080;
-max-width:360px;
-text-align:center;
+/* Carta */
+.carta{
+    max-width:650px;
+    background:rgba(255,255,255,0.08);
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 25px rgba(0,0,0,0.3);
 }
 
-.foto{
-width:100%;
-border-radius:14px;
-margin-bottom:12px;
-box-shadow:0 0 25px #1e90ff;
+/* Imagen */
+img{
+    width:220px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
+/* Botón */
 button{
-border:none;
-padding:11px 20px;
-font-size:15px;
-border-radius:25px;
-margin:7px;
-cursor:pointer;
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#00c6ff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
-#yes{background:white;color:#0a2a66;}
-#no{background:#0a2a66;color:white;position:absolute;}
-#music{background:#1e90ff;color:white;}
+/* Corazones */
+.corazon{
+    position:absolute;
+    color:#00c6ff;
+    font-size:20px;
+    animation:subir 6s linear infinite;
+}
 
-#mensaje{margin-top:10px;font-size:18px;}
-#ring{display:none;font-size:55px;animation:pop 1s infinite;}
-@keyframes pop{50%{transform:scale(1.2);}}
-
-#carta{
-display:none;
-margin-top:10px;
-background:#ffffff20;
-padding:12px;
-border-radius:10px;
-font-size:14px;
+@keyframes subir{
+    from{transform:translateY(100vh);opacity:1;}
+    to{transform:translateY(-10vh);opacity:0;}
 }
 </style>
 </head>
 
-<body>
-
-<div id="intro">
-💙 Toca la pantalla para comenzar 💙
-</div>
+<body onclick="activarMusica()">
 
 <!-- MUSICA -->
 <audio id="musica" loop>
-<source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+    <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mp3">
 </audio>
 
-<div class="container">
+<!-- PANTALLA 1 -->
+<div id="pantalla1" class="pantalla">
+    <div class="carta">
 
-<h2>💙 Un misterio romántico 💙</h2>
+        <!-- IMAGEN -->
+        <img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
 
-<img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
+        <h2>Para ti, José Alberto 💙</h2>
 
-<button id="music">🎵 Activar música</button>
+        <p>Desde que llegaste a mi vida todo cambió…</p>
 
-<p>🧩 Pista: La persona que te ama está leyendo esto 💙</p>
+        <p>Tu forma de ser, tu cariño, tu protección,<br>
+        y cada detalle que tienes conmigo.</p>
 
-<h3>¿Quieres ser mi San Valentín, José Alberto? 💙</h3>
+        <p>Gracias por estar siempre, por cuidarme,<br>
+        por hacerme sentir amada cada día.</p>
 
-<button id="yes">Sí 💙</button>
-<button id="no">No 😢</button>
+        <p>Eres mi persona favorita, mi paz,<br>
+        y el amor más bonito que tengo. 💙</p>
 
-<div id="ring">💍</div>
-<div id="mensaje"></div>
-
-<div id="carta">
-💌 José Alberto 💙<br><br>
-Eres mi paz, mi felicidad y mi lugar favorito.<br>
-Gracias por cuidarme, amarme y estar siempre conmigo.<br>
-Te amo hoy, mañana y siempre 💙<br><br>
-Feliz primer San Valentín juntos 💙
+        <button onclick="siguiente()">Continuar 💙</button>
+    </div>
 </div>
 
-<p>💙 296 días contigo 💙</p>
-
+<!-- PANTALLA 2 -->
+<div id="pantalla2" class="pantalla oculta">
+    <div class="carta">
+        <h1>💙 Feliz San Valentín 💙</h1>
+        <p>296 días juntos 💙</p>
+        <p>Siempre tú y yo 💙</p>
+        <h2>Te amo, José Alberto 💙</h2>
+    </div>
 </div>
 
 <script>
+let musicaIniciada=false;
 
-/* TOCAR PANTALLA = MUSICA + CORAZONES */
-document.body.addEventListener("click",()=>{
-document.getElementById("intro").style.display="none";
-document.getElementById("musica").play();
-crearCorazones();
-},{once:true});
-
-/* estrellas */
-for(let i=0;i<120;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-document.body.appendChild(s);
+function activarMusica(){
+    if(!musicaIniciada){
+        document.getElementById("musica").play();
+        musicaIniciada=true;
+    }
 }
 
-/* corazones */
-function crearCorazones(){
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💙";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},400);
+function siguiente(){
+    document.getElementById("pantalla1").classList.add("oculta");
+    document.getElementById("pantalla2").classList.remove("oculta");
 }
 
-/* boton musica */
-document.getElementById("music").onclick=function(){
-document.getElementById("musica").play();
-}
+/* Corazones */
+function crearCorazon(){
+    const corazon=document.createElement("div");
+    corazon.classList.add("corazon");
+    corazon.innerHTML="💙";
+    corazon.style.left=Math.random()*100+"vw";
+    corazon.style.fontSize=(15+Math.random()*20)+"px";
+    document.body.appendChild(corazon);
 
-/* boton SI */
-document.getElementById("yes").onclick=function(){
-document.getElementById("ring").style.display="block";
-document.getElementById("mensaje").innerHTML=
-"💙 Te amo José Alberto 💙<br>Gracias por todo 💙<br>Feliz primer San Valentín juntos 💙";
-document.getElementById("carta").style.display="block";
+    setTimeout(()=>{corazon.remove();},6000);
 }
-
-/* boton NO huye */
-let noBtn=document.getElementById("no");
-noBtn.onmouseover=function(){
-noBtn.style.top=Math.random()*80+"vh";
-noBtn.style.left=Math.random()*80+"vw";
-}
+setInterval(crearCorazon,500);
 </script>
 
 </body>
