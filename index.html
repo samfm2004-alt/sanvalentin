@@ -8,7 +8,7 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            background: radial-gradient(circle, #203a43, #0f2027);
             color: white;
             text-align: center;
             overflow: hidden;
@@ -26,20 +26,26 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .oculta { opacity: 0; pointer-events: none; }
+        .oculta { 
+            opacity: 0; 
+            pointer-events: none; 
+            transform: scale(0.8) translateY(20px);
+        }
 
         .carta {
-            max-width: 400px;
+            max-width: 450px;
             width: 85%;
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 40px rgba(0, 198, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-height: 85vh;
+            overflow-y: auto;
             position: relative;
         }
 
@@ -47,46 +53,51 @@
             width: 100%;
             max-height: 200px;
             object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(0, 198, 255, 0.5);
+        }
+
+        /* Estilo para los recuerdos */
+        .recuerdo-item {
+            background: rgba(0, 198, 255, 0.1);
+            margin: 10px 0;
+            padding: 15px;
             border-radius: 15px;
-            margin-bottom: 15px;
+            border-left: 4px solid #00c6ff;
+            text-align: left;
+            font-size: 14px;
         }
 
         button {
-            padding: 12px 25px;
+            padding: 14px 30px;
             border: none;
-            border-radius: 25px;
-            background: #00c6ff;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
             color: white;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
             font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
+            margin-top: 15px;
         }
 
-        #btnSi { background: #00c6ff; }
-        
-        #btnNo { 
-            background: #ff4b2b; 
-            position: absolute;
-            white-space: nowrap;
-        }
+        button:hover { transform: scale(1.05); }
 
-        .contenedor-botones {
-            margin-top: 40px;
-            height: 60px;
-            position: relative;
-        }
+        #btnNo { background: #ff4b2b; position: relative; }
 
         .corazon {
             position: absolute;
-            color: #00c6ff;
-            animation: subir 5s linear infinite;
+            pointer-events: none;
+            animation: subir 6s linear infinite;
             z-index: -1;
         }
 
         @keyframes subir {
-            0% { transform: translateY(110vh); opacity: 1; }
-            100% { transform: translateY(-10vh); opacity: 0; }
+            0% { transform: translateY(110vh) scale(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
@@ -99,18 +110,18 @@
     <div id="p1" class="pantalla">
         <div class="carta">
             <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
-            <h2>Para ti, José Alberto 💙</h2>
-            <p>Eres mi persona favorita y mi paz.</p>
-            <button onclick="irAPregunta()">Continuar 💙</button>
+            <h2 style="color: #00c6ff;">Hola, José Alberto 💙</h2>
+            <p>Hay un mensaje especial esperando por ti...</p>
+            <button onclick="navegar('p1', 'p2')">Entrar 💙</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
-            <h2>José Alberto...</h2>
-            <h3>¿Quieres ser mi San Valentín? 💙</h3>
-            <div class="contenedor-botones">
-                <button id="btnSi" onclick="irAFinal()">SÍ 😍</button>
+            <h2 style="font-size: 26px;">José Alberto...</h2>
+            <p style="font-size: 18px;">¿Quieres ser mi San Valentín este año? 💙</p>
+            <div style="margin-top: 40px; min-height: 100px;">
+                <button onclick="navegar('p2', 'p3')">¡SÍ! 😍</button>
                 <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
             </div>
         </div>
@@ -118,68 +129,55 @@
 
     <div id="p3" class="pantalla oculta">
         <div class="carta">
-            <h1>💙 ¡SABÍA QUE DIRÍAS QUE SÍ! 💙</h1>
-            <p>Gracias por hacerme tan feliz.</p>
-            <h2>Te amo, José Alberto 💙</h2>
+            <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
+            <div style="text-align: left; font-style: italic; line-height: 1.6;">
+                <p>Eres la casualidad más bonita que me ha pasado. Gracias por cada risa, por cada abrazo y por ser ese refugio donde siempre quiero volver.</p>
+                <p>Nadie me hace sentir como tú lo haces, y hoy solo quiero recordarte lo mucho que te amo.</p>
+            </div>
+            <button onclick="navegar('p3', 'p4')">Sigue bajando... 👇</button>
+        </div>
+    </div>
+
+    <div id="p4" class="pantalla oculta">
+        <div class="carta">
+            <h2 style="color: #00c6ff;">Lo que más amo de nosotros 💙</h2>
+            <div class="recuerdo-item">✨ Tu forma de cuidarme y hacerme sentir segura.</div>
+            <div class="recuerdo-item">✨ Cada vez que me haces reír sin parar.</div>
+            <div class="recuerdo-item">✨ Los planes juntos, desde los más grandes hasta los más simples.</div>
+            <div class="recuerdo-item">✨ Simplemente, ser nosotros dos contra el mundo.</div>
+            <button onclick="navegar('p4', 'p5')">Última cosita... 💙</button>
+        </div>
+    </div>
+
+    <div id="p5" class="pantalla oculta">
+        <div class="carta">
+            <h1 style="font-size: 32px; color: #00c6ff;">¡TE AMO MUCHO!</h1>
+            <p>Gracias por ser el mejor compañero de vida.</p>
+            <div style="font-size: 60px;">💙👩‍❤️‍👨💙</div>
+            <p><b>Feliz San Valentín, mi vida.</b></p>
         </div>
     </div>
 
     <script>
-        // Lista de frases para el botón "No"
-        const frasesNo = [
-            "¿Seguro? 🥺",
-            "Piénsalo bien...",
-            "¡Ni lo sueñes! 😂",
-            "Anda, di que sí 💙",
-            "Me vas a hacer llorar... 😢",
-            "¿Tan mala soy? 😅",
-            "¡Intenta otra vez!",
-            "Esa opción no vale 🚫",
-            "Te daré un beso si dices sí 😘"
-        ];
+        const frasesNo = ["¿Seguro? 🥺", "Piénsalo... 🧐", "¡No puedes! 😂", "Di que sí 💙", "Mala persona 😢", "¡Casi!", "Nop 🚫", "Esa tecla no sirve 😉"];
 
-        function irAPregunta() {
-            document.getElementById("musica").play();
-            document.getElementById("p1").classList.add("oculta");
-            document.getElementById("p2").classList.remove("oculta");
-            
-            // Posición inicial del botón No
-            const btnNo = document.getElementById("btnNo");
-            btnNo.style.top = "0px";
-            btnNo.style.right = "20px";
-        }
-
-        function irAFinal() {
-            document.getElementById("p2").classList.add("oculta");
-            document.getElementById("p3").classList.remove("oculta");
+        function navegar(actual, siguiente) {
+            if(actual === 'p1') document.getElementById("musica").play();
+            document.getElementById(actual).classList.add("oculta");
+            document.getElementById(siguiente).classList.remove("oculta");
         }
 
         function moverBoton() {
             const btnNo = document.getElementById("btnNo");
-            
-            // Cambiar el texto de forma aleatoria
-            const fraseRandom = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-            btnNo.innerHTML = fraseRandom;
-
-            // Mover a posición aleatoria
-            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 50);
-            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 50);
-            
-            btnNo.style.position = "fixed";
-            btnNo.style.left = x + "px";
-            btnNo.style.top = y + "px";
+            btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
+            const x = Math.random() * 160 - 80;
+            const y = Math.random() * 160 - 80;
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
 
         function crearCorazon() {
-            const corazon = document.createElement("div");
-            corazon.classList.add("corazon");
-            corazon.innerHTML = "💙";
-            corazon.style.left = Math.random() * 100 + "vw";
-            corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
-            document.body.appendChild(corazon);
-            setTimeout(() => { corazon.remove(); }, 5000);
-        }
-        setInterval(crearCorazon, 300);
-    </script>
-</body>
-</html>
+            const simbolos = ["💙", "✨", "☁️", "💧"];
+            const item = document.createElement("div");
+            item.classList.add("corazon");
+            item.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
+            item.style.left = Math.random() *
