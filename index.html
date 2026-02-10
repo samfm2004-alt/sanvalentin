@@ -26,17 +26,15 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: all 0.6s ease;
+            transition: opacity 0.5s ease;
         }
 
         .oculta { 
-            opacity: 0; 
-            pointer-events: none; 
-            transform: scale(0.9);
+            display: none !important; /* Ahora usamos display none para asegurar que cambie */
         }
 
         .carta {
-            max-width: 450px;
+            max-width: 420px;
             width: 85%;
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
@@ -50,7 +48,7 @@
 
         .foto {
             width: 100%;
-            max-height: 200px;
+            max-height: 180px;
             object-fit: cover;
             border-radius: 20px;
             margin-bottom: 20px;
@@ -75,28 +73,77 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.2s;
             font-size: 16px;
-            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
-        }
-
-        /* Contenedor controlado para que el NO no se pierda */
-        .area-botones {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            min-height: 120px; 
-            position: relative;
+            margin-top: 10px;
         }
 
         #btnNo { 
             background: #ff4b2b; 
-            position: relative; 
-            transition: 0.15s; /* Movimiento más fluido y corto */
-            z-index: 10;
+            position: relative;
+            z-index: 999;
         }
 
         .corazon {
-            position:*
+            position: absolute;
+            pointer-events: none;
+            animation: subir 6s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(110vh) scale(0); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musica" loop>
+        <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+    </audio>
+
+    <div id="p1" class="pantalla">
+        <div class="carta">
+            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
+            <h2 style="color: #00c6ff;">Para José Alberto 💙</h2>
+            <p>Preparé algo muy especial para ti...</p>
+            <button onclick="saltarA('p2')">Entrar 💙</button>
+        </div>
+    </div>
+
+    <div id="p2" class="pantalla oculta">
+        <div class="carta">
+            <h2>José Alberto... 💙</h2>
+            <p>¿Quieres ser mi San Valentín este año?</p>
+            <div style="margin-top:30px; min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 20px; position: relative;">
+                <button onclick="saltarA('p3')">¡SÍ! 😍</button>
+                <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="p3" class="pantalla oculta">
+        <div class="carta">
+            <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
+            <div style="text-align: left; font-style: italic; font-size: 15px;">
+                <p>Eres mi lugar favorito y mi paz. Gracias por cuidarme tanto y por ser como eres conmigo.</p>
+                <p>No hay nadie más con quien prefiera compartir mi vida que contigo.</p>
+            </div>
+            <button onclick="saltarA('p4')">Sigue leyendo... 👇</button>
+        </div>
+    </div>
+
+    <div id="p4" class="pantalla oculta">
+        <div class="carta">
+            <h2 style="color: #00c6ff;">Lo que más amo 💙</h2>
+            <div class="recuerdo-item">✨ Tus abrazos que me hacen sentir segura.</div>
+            <div class="recuerdo-item">✨ Lo mucho que me haces reír cada día.</div>
+            <div class="recuerdo-item">✨ Tu apoyo incondicional en todo.</div>
+            <div class="recuerdo-item">✨ El amor tan bonito que nos tenemos.</div>
+            <button onclick="saltarA('p5')">Última cosita... 💙</button>
+        </div>
+    </div>
+
+    <div id="
