@@ -5,145 +5,142 @@
 <title>Para José Alberto 💙</title>
 
 <style>
-body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    background:linear-gradient(120deg,#0f2027,#203a43,#2c5364);
-    color:white;
-    text-align:center;
-    overflow:hidden;
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    /* Fondo con degradado y la imagen que proporcionaste */
+    background: linear-gradient(rgba(15, 32, 39, 0.8), rgba(32, 58, 67, 0.8)), 
+                url('https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    overflow: hidden;
 }
 
 /* Pantallas */
-.pantalla{
-    position:absolute;
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    transition:opacity 1s;
+.pantalla {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s;
 }
 
-.oculta{
-    opacity:0;
-    pointer-events:none;
+.oculta {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Carta */
-.carta{
-    max-width:650px;
-    background:rgba(255,255,255,0.08);
-    padding:30px;
-    border-radius:20px;
-    backdrop-filter:blur(8px);
-    box-shadow:0 0 25px rgba(0,0,0,0.3);
+.carta {
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.6); /* Un poco más oscuro para que se lea bien el texto */
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: aparecer 2s ease;
 }
 
-/* Imagen */
-img{
-    width:220px;
-    border-radius:15px;
-    margin-bottom:15px;
-    box-shadow:0 0 15px rgba(0,0,0,0.5);
+@keyframes aparecer {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Botón */
-button{
-    margin-top:20px;
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:#00c6ff;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #00c6ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #00a8e8;
 }
 
 /* Corazones */
-.corazon{
-    position:absolute;
-    color:#00c6ff;
-    font-size:20px;
-    animation:subir 6s linear infinite;
+.corazon {
+    position: absolute;
+    color: #00c6ff;
+    font-size: 20px;
+    animation: subir 6s linear infinite;
+    z-index: -1;
 }
 
-@keyframes subir{
-    from{transform:translateY(100vh);opacity:1;}
-    to{transform:translateY(-10vh);opacity:0;}
+@keyframes subir {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
 </head>
 
-<body onclick="activarMusica()">
+<body>
 
-<!-- MUSICA -->
 <audio id="musica" loop>
-    <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mp3">
+    <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
 </audio>
 
-<!-- PANTALLA 1 -->
 <div id="pantalla1" class="pantalla">
     <div class="carta">
-
-        <!-- IMAGEN -->
-        <img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
-
         <h2>Para ti, José Alberto 💙</h2>
-
         <p>Desde que llegaste a mi vida todo cambió…</p>
-
         <p>Tu forma de ser, tu cariño, tu protección,<br>
         y cada detalle que tienes conmigo.</p>
-
         <p>Gracias por estar siempre, por cuidarme,<br>
         por hacerme sentir amada cada día.</p>
-
         <p>Eres mi persona favorita, mi paz,<br>
         y el amor más bonito que tengo. 💙</p>
-
         <button onclick="siguiente()">Continuar 💙</button>
     </div>
 </div>
 
-<!-- PANTALLA 2 -->
 <div id="pantalla2" class="pantalla oculta">
     <div class="carta">
         <h1>💙 Feliz San Valentín 💙</h1>
-        <p>296 días juntos 💙</p>
+        <p>Gracias por existir, mi amor.</p>
         <p>Siempre tú y yo 💙</p>
         <h2>Te amo, José Alberto 💙</h2>
     </div>
 </div>
 
 <script>
-let musicaIniciada=false;
+function siguiente() {
+    // Inicia la música al hacer clic
+    var audio = document.getElementById("musica");
+    audio.play().catch(function(error) {
+        console.log("La reproducción automática fue bloqueada por el navegador, pero se intentó iniciar.");
+    });
 
-function activarMusica(){
-    if(!musicaIniciada){
-        document.getElementById("musica").play();
-        musicaIniciada=true;
-    }
-}
-
-function siguiente(){
     document.getElementById("pantalla1").classList.add("oculta");
     document.getElementById("pantalla2").classList.remove("oculta");
 }
 
-/* Corazones */
-function crearCorazon(){
-    const corazon=document.createElement("div");
+/* Corazones flotando */
+function crearCorazon() {
+    const corazon = document.createElement("div");
     corazon.classList.add("corazon");
-    corazon.innerHTML="💙";
-    corazon.style.left=Math.random()*100+"vw";
-    corazon.style.fontSize=(15+Math.random()*20)+"px";
+    corazon.innerHTML = "💙";
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.fontSize = (15 + Math.random() * 20) + "px";
+    corazon.style.duration = (4 + Math.random() * 4) + "s";
     document.body.appendChild(corazon);
 
-    setTimeout(()=>{corazon.remove();},6000);
+    setTimeout(() => { corazon.remove(); }, 6000);
 }
-setInterval(crearCorazon,500);
+setInterval(crearCorazon, 500);
 </script>
 
 </body>
