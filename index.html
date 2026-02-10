@@ -5,195 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para José Alberto 💙</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
 body{
 margin:0;
 height:100vh;
-background:radial-gradient(circle at top,#0a2a66,#020a1f,#000);
-font-family:'Montserrat',sans-serif;
-color:white;
-overflow:hidden;
-}
-
-/* INTRO */
-#intro{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
+background: radial-gradient(circle at top,#0a2a66,#020a1f,#000);
+font-family:Arial, Helvetica, sans-serif;
+color:white;
 text-align:center;
-z-index:999;
-font-size:22px;
+overflow:hidden;
 }
 
-/* estrellas */
-.star{
-position:absolute;
-width:2px;
-height:2px;
-background:white;
-animation:twinkle 2s infinite alternate;
+img{
+width:280px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,140,255,0.7);
+margin-bottom:20px;
 }
-@keyframes twinkle{from{opacity:.2;}to{opacity:1;}}
-
-/* corazones */
-.heart{
-position:absolute;
-font-size:20px;
-animation:floatUp 6s linear infinite;
-}
-@keyframes floatUp{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-10vh);opacity:0;}
-}
-
-.container{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#ffffff10;
-padding:25px;
-border-radius:18px;
-backdrop-filter:blur(10px);
-box-shadow:0 0 30px #00000080;
-max-width:360px;
-text-align:center;
-}
-
-/* FOTO */
-.foto{
-width:100%;
-border-radius:14px;
-margin-bottom:12px;
-box-shadow:0 0 25px #1e90ff;
-animation:glow 3s infinite alternate;
-}
-@keyframes glow{from{box-shadow:0 0 10px #1e90ff;}to{box-shadow:0 0 30px #1e90ff;}}
 
 button{
+padding:12px 25px;
 border:none;
-padding:11px 20px;
-font-size:15px;
-border-radius:25px;
-margin:7px;
+border-radius:10px;
+font-size:18px;
 cursor:pointer;
+background:#1e90ff;
+color:white;
+transition:0.3s;
 }
 
-#yes{background:white;color:#0a2a66;}
-#no{background:#0a2a66;color:white;position:absolute;}
-#music{background:#1e90ff;color:white;}
-
-#mensaje{margin-top:10px;font-size:18px;}
-#ring{display:none;font-size:55px;animation:pop 1s infinite;}
-@keyframes pop{50%{transform:scale(1.2);}}
-
-/* carta secreta */
-#carta{
-display:none;
-margin-top:10px;
-background:#ffffff20;
-padding:12px;
-border-radius:10px;
-font-size:14px;
+button:hover{
+transform:scale(1.1);
+background:#3aa0ff;
 }
 </style>
 </head>
 
 <body>
 
-<div id="intro">
-💙 Toca la pantalla para comenzar 💙
-</div>
+<img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
 
-<!-- MUSICA REAL -->
-<audio id="musica" loop>
-<source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mp3">
+<h1>Para ti, José Alberto 💙</h1>
+<p>Si estás viendo esto... significa que te amo muchísimo ✨</p>
+
+<button onclick="playMusic()">Tocar música 🎵</button>
+
+<audio id="music">
+<source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
 </audio>
 
-<div class="container">
-
-<h2>💙 Un misterio romántico 💙</h2>
-
-<img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
-
-<button id="music">🎵 Activar música</button>
-
-<p>🧩 Pista final: La persona que te ama está leyendo esto… 💙</p>
-
-<h3>¿Quieres ser mi San Valentín, José Alberto? 💙</h3>
-
-<button id="yes">Sí 💙</button>
-<button id="no">No 😢</button>
-
-<div id="ring">💍</div>
-<div id="mensaje"></div>
-
-<div id="carta">
-💌 José Alberto 💙<br><br>
-Eres mi lugar favorito, mi paz y mi felicidad.<br>
-Gracias por cada momento, cada sonrisa y cada abrazo.<br>
-Te amo hoy, mañana y siempre 💙<br><br>
-Feliz primer San Valentín juntos 💙
-</div>
-
-<p>💙 296 días contigo 💙</p>
-
-</div>
-
 <script>
-
-/* INICIO + MUSICA */
-document.body.addEventListener("click",()=>{
-document.getElementById("intro").style.display="none";
-document.getElementById("musica").play();
-crearCorazones();
-},{once:true});
-
-/* estrellas */
-for(let i=0;i<140;i++){
-let s=document.createElement("div");
-s.className="star";
-s.style.left=Math.random()*100+"vw";
-s.style.top=Math.random()*100+"vh";
-document.body.appendChild(s);
-}
-
-/* corazones flotando */
-function crearCorazones(){
-setInterval(()=>{
-let h=document.createElement("div");
-h.className="heart";
-h.innerHTML="💙";
-h.style.left=Math.random()*100+"vw";
-document.body.appendChild(h);
-setTimeout(()=>h.remove(),6000);
-},400);
-}
-
-/* boton musica */
-document.getElementById("music").onclick=function(){
-document.getElementById("musica").play();
-}
-
-/* boton SI */
-document.getElementById("yes").onclick=function(){
-document.getElementById("ring").style.display="block";
-document.getElementById("mensaje").innerHTML=
-"💙 Te amo José Alberto 💙<br>Gracias por todo 💙<br>Feliz primer San Valentín juntos 💙";
-document.getElementById("carta").style.display="block";
-}
-
-/* boton NO huye */
-let noBtn=document.getElementById("no");
-noBtn.onmouseover=function(){
-noBtn.style.top=Math.random()*80+"vh";
-noBtn.style.left=Math.random()*80+"vw";
+function playMusic(){
+document.getElementById("music").play();
 }
 </script>
 
