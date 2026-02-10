@@ -92,11 +92,15 @@
 </head>
 <body>
 
+    <audio id="musicaFondo" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rain-on-the-window-Piano-Music.mp3" type="audio/mpeg">
+    </audio>
+
     <div id="p1" class="pantalla">
         <div class="carta">
             <h2 style="color: #00c6ff;">Para el hombre de mi vida 💙</h2>
             <p>José Alberto, he guardado mis sentimientos en este rincón digital solo para ti...</p>
-            <button onclick="navegar('p1', 'p2')">Abrir con amor 💙</button>
+            <button onclick="iniciarConMusica()">Abrir con amor 💙</button>
         </div>
     </div>
 
@@ -146,6 +150,14 @@
     </div>
 
     <script>
+        const audio = document.getElementById("musicaFondo");
+
+        function iniciarConMusica() {
+            // Reproducir audio al primer clic (necesario por seguridad del navegador)
+            audio.play().catch(error => console.log("El audio se activará al interactuar"));
+            navegar('p1', 'p2');
+        }
+
         function navegar(actual, siguiente) {
             document.getElementById(actual).classList.add("oculta");
             document.getElementById(siguiente).classList.remove("oculta");
@@ -179,4 +191,3 @@
     </script>
 </body>
 </html>
-
