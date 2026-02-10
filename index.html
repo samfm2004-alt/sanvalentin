@@ -12,7 +12,7 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:radial-gradient(circle,#0a2a66,#020a1f,#000);
+background:linear-gradient(#020a1f,#0a2a66,#000);
 font-family:sans-serif;
 color:white;
 text-align:center;
@@ -22,25 +22,25 @@ text-align:center;
 background:rgba(255,255,255,0.05);
 padding:40px;
 border-radius:20px;
-box-shadow:0 0 40px rgba(0,150,255,0.4);
+box-shadow:0 0 30px rgba(0,150,255,0.4);
+width:320px;
 }
 
 img{
-width:250px;
+width:100%;
 border-radius:15px;
-margin-bottom:20px;
-box-shadow:0 0 20px rgba(0,150,255,0.6);
+margin-bottom:15px;
 }
 
 button{
 background:#4da6ff;
 border:none;
-padding:15px 30px;
+padding:12px 25px;
 border-radius:10px;
 color:white;
-font-size:18px;
+font-size:16px;
 cursor:pointer;
-margin-top:15px;
+margin-top:10px;
 }
 
 button:hover{
@@ -53,18 +53,28 @@ background:#1e90ff;
 
 <div class="card">
 
-<!-- IMAGEN DRIVE -->
+<!-- IMAGEN -->
 <img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
 
-<h1>Para ti, José Alberto 💙</h1>
-<p>Si estás viendo esto… significa que te amo muchísimo ✨</p>
+<h2>Para ti, José Alberto 💙</h2>
+
+<p>
+Desde que llegaste a mi vida todo cambió…<br>
+Tu forma de ser, tu cariño, tu protección,<br>
+y cada detalle que tienes conmigo.<br><br>
+
+Gracias por estar siempre, por cuidarme,<br>
+por hacerme sentir amada cada día.<br><br>
+
+Eres mi persona favorita, mi paz,<br>
+y el amor más bonito que tengo. 💙
+</p>
 
 <button onclick="document.getElementById('music').play()">
 Tocar música 🎵
 </button>
 
-<!-- MUSICA DRIVE -->
-<audio id="music">
+<audio id="music" controls style="margin-top:10px;width:100%;">
 <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
 </audio>
 
@@ -72,4 +82,5 @@ Tocar música 🎵
 
 </body>
 </html>
+
 
