@@ -93,13 +93,13 @@
 <body>
 
     <audio id="musica" loop>
-        <source src="https://www.chosic.com/wp-content/uploads/2020/06/Warm-Memories-Beautiful-Piano-Music.mp3" type="audio/mpeg">
+        <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-The-Piano-Plays-Softly.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
             <h2 style="color: #00c6ff;">Para el hombre de mi vida 💙</h2>
-            <p>José Alberto, he guardado mis sentimientos en este pequeño rincón digital solo para ti...</p>
+            <p>José Alberto, he guardado mis sentimientos en este rincón digital solo para ti...</p>
             <button onclick="iniciarTodo()">Abrir con amor 💙</button>
         </div>
     </div>
@@ -119,17 +119,75 @@
         <div class="carta">
             <h2 style="color: #00c6ff;">Mi Amor Eterno... 💙</h2>
             <div style="text-align: left; font-style: italic; line-height: 1.6; font-size: 15px;">
-                <p>Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre.</p>
-                <p>Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo, mi confidente y el amor de mi vida.</p>
+                <p>Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre o cuando siento tu presencia cerca.</p>
+                <p>Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo incondicional, mi confidente en los días grises y el amor más real que he conocido.</p>
+                <p>Nadie me conoce como tú, y nadie tiene esa magia para hacerme sentir en casa con solo una mirada.</p>
             </div>
-            <button onclick="navegar('p3', 'p4')">¿Por qué tú? 👇</button>
+            <button onclick="navegar('p3', 'p4')">Por qué te elijo 👇</button>
         </div>
     </div>
 
     <div id="p4" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Por esto y más, te elijo a ti 💙</h2>
-            <div class="recuerdo-item">✨ <b>Nuestra conexión:</b> Porque no necesito decir palabras para que sepas qué estoy pensando o cómo me siento.</div>
-            <div class="recuerdo-item">✨ <b>Tu paz:</b> Porque en medio de cualquier tormenta, tus abrazos son el único lugar donde me siento segura.</div>
-            <div class="
+            <h2 style="color: #00c6ff;">Por esto y más, estamos juntos 💙</h2>
+            <div class="recuerdo-item">✨ <b>Tu paz:</b> Porque en medio de cualquier caos, tus abrazos son el único refugio donde todo vuelve a estar bien.</div>
+            <div class="recuerdo-item">✨ <b>Tu alegría:</b> Por esa forma tan tuya de hacerme reír hasta que me duele la cara, incluso cuando el mundo se siente pesado.</div>
+            <div class="recuerdo-item">✨ <b>Nuestra conexión:</b> Porque me encanta que no necesitemos palabras para saber qué estamos pensando.</div>
+            <div class="recuerdo-item">✨ <b>Tu paciencia:</b> Por cómo me escuchas, me cuidas y me das fuerzas cuando yo siento que no puedo más.</div>
+            <div class="recuerdo-item">✨ <b>Nuestro equipo:</b> Porque hemos aprendido a crecer juntos, superando miedos y construyendo un nosotros que amo proteger.</div>
+            <div class="recuerdo-item">✨ <b>Tu esencia:</b> Por la bondad infinita de tu corazón y por la luz que irradias en mi vida cada día.</div>
+            <button onclick="navegar('p4', 'p5')">Mi promesa 💙</button>
+        </div>
+    </div>
+
+    <div id="p5" class="pantalla oculta">
+        <div class="carta">
+            <h1 style="font-size: 32px; color: #00c6ff;">¡TE AMO, JOSÉ ALBERTO!</h1>
+            <p>Prometo cuidarte, respetarte y recordarte cada día lo especial que eres para mí.</p>
+            <div style="font-size: 60px; margin: 20px;">💙👩‍❤️‍👨💙</div>
+            <p style="font-size: 18px;"><b>Feliz San Valentín, mi vida entera.</b></p>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById("musica");
+
+        function iniciarTodo() {
+            audio.play().catch(e => console.log("Audio activo"));
+            navegar('p1', 'p2');
+        }
+
+        function navegar(actual, siguiente) {
+            document.getElementById(actual).classList.add("oculta");
+            document.getElementById(siguiente).classList.remove("oculta");
+        }
+
+        function aceptarAmor() {
+            alert("¡Sabía que dirías que sí! Eres lo mejor que me ha pasado en la vida. 😍💙");
+            navegar('p2', 'p3');
+        }
+
+        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Te atrape! 😜", "Di que sí 💙"];
+
+        function moverBoton() {
+            const btnNo = document.getElementById("btnNo");
+            btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
+            const x = Math.random() * 120 - 60;
+            const y = Math.random() * 120 - 60;
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function crearCorazon() {
+            const item = document.createElement("div");
+            item.className = "corazon";
+            item.innerHTML = "💙";
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.fontSize = (Math.random() * 20 + 10) + "px";
+            document.body.appendChild(item);
+            setTimeout(() => item.remove(), 6000);
+        }
+        setInterval(crearCorazon, 300);
+    </script>
+</body>
+</html>
 
