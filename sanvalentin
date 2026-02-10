@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi San Valentín 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+height:100vh;
+overflow:hidden;
+font-family:'Great Vibes',cursive;
+background:linear-gradient(180deg,#021a3a,#033b7a,#021a3a);
+color:white;
+text-align:center;
+}
+
+/* ESTRELLAS */
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+from{opacity:.2}
+to{opacity:1}
+}
+
+/* CORAZONES */
+.heart{
+position:absolute;
+color:#6ec6ff;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+@keyframes float{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* CONTENIDO */
+.container{
+position:relative;
+top:50%;
+transform:translateY(-50%);
+}
+
+img{
+width:200px;
+border-radius:20px;
+box-shadow:0 0 20px #6ec6ff;
+margin:20px;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+font-size:24px;
+cursor:pointer;
+margin:10px;
+font-family:'Great Vibes',cursive;
+}
+
+#si{
+background:#6ec6ff;
+color:white;
+}
+
+#no{
+background:#012a5e;
+color:white;
+position:absolute;
+}
+
+#mensaje{
+display:none;
+font-size:30px;
+margin-top:20px;
+}
+
+#carta{
+display:none;
+margin-top:20px;
+font-size:22px;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+background:rgba(0,0,0,0.3);
+padding:20px;
+border-radius:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSICA -->
+<audio id="musica" loop>
+<source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mp3">
+</audio>
+
+<div class="container">
+
+<h1>Jose Alberto 💙</h1>
+<h2>¿Quieres ser mi San Valentín?</h2>
+
+<img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
+
+<br>
+
+<button id="si">Sí 💙</button>
+<button id="no">No 💔</button>
+
+<div id="mensaje">
+💙 Te amo Jose Alberto 💙<br>
+Gracias por estos 296 días juntos<br>
+Feliz primer San Valentín juntos ✨
+<br><br>
+<button onclick="mostrarCarta()">Abrir carta secreta 💌</button>
+</div>
+
+<div id="carta">
+Jose Alberto 💙<br><br>
+Desde que llegaste a mi vida todo cambió…  
+Tu amor, tu forma de ser, tu cariño y tu protección  
+hacen que cada día sea mágico.  
+
+Estos 296 días contigo han sido los más hermosos  
+de toda mi vida.  
+
+No quiero un para siempre perfecto…  
+quiero un para siempre contigo.  
+
+Te amo infinito 💙✨
+</div>
+
+</div>
+
+<script>
+
+/* SONIDO AL TOCAR PANTALLA (iPhone compatible) */
+document.addEventListener("click",()=>{
+document.getElementById("musica").play().catch(()=>{});
+});
+
+/* BOTON NO QUE HUYE */
+const noBtn=document.getElementById("no");
+noBtn.addEventListener("mouseover",()=>{
+noBtn.style.top=Math.random()*80+"%";
+noBtn.style.left=Math.random()*80+"%";
+});
+
+/* BOTON SI */
+document.getElementById("si").onclick=()=>{
+document.getElementById("mensaje").style.display="block";
+};
+
+/* CARTA */
+function mostrarCarta(){
+document.getElementById("carta").style.display="block";
+}
+
+/* CREAR ESTRELLAS */
+for(let i=0;i<80;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"%";
+star.style.animationDuration=(Math.random()*2+1)+"s";
+document.body.appendChild(star);
+}
+
+/* CREAR CORAZONES */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💙";
+heart.style.left=Math.random()*100+"%";
+heart.style.bottom="0";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+},400);
+
+</script>
+
+</body>
+</html>
