@@ -12,75 +12,58 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(#020a1f,#0a2a66,#000);
-font-family:sans-serif;
+flex-direction:column;
+background: radial-gradient(circle at top,#0a2a66,#020a1f,#000);
+font-family:Arial, Helvetica, sans-serif;
 color:white;
 text-align:center;
-}
-
-.card{
-background:rgba(255,255,255,0.05);
-padding:40px;
-border-radius:20px;
-box-shadow:0 0 30px rgba(0,150,255,0.4);
-width:320px;
+overflow:hidden;
 }
 
 img{
-width:100%;
-border-radius:15px;
-margin-bottom:15px;
+width:280px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,140,255,0.7);
+margin-bottom:20px;
 }
 
 button{
-background:#4da6ff;
-border:none;
 padding:12px 25px;
+border:none;
 border-radius:10px;
-color:white;
-font-size:16px;
+font-size:18px;
 cursor:pointer;
-margin-top:10px;
+background:#1e90ff;
+color:white;
+transition:0.3s;
 }
 
 button:hover{
-background:#1e90ff;
+transform:scale(1.1);
+background:#3aa0ff;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-
-<!-- IMAGEN -->
 <img src="https://drive.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
 
-<h2>Para ti, José Alberto 💙</h2>
+<h1>Para ti, José Alberto 💙</h1>
+<p>Si estás viendo esto... significa que te amo muchísimo ✨</p>
 
-<p>
-Desde que llegaste a mi vida todo cambió…<br>
-Tu forma de ser, tu cariño, tu protección,<br>
-y cada detalle que tienes conmigo.<br><br>
+<button onclick="playMusic()">Tocar música 🎵</button>
 
-Gracias por estar siempre, por cuidarme,<br>
-por hacerme sentir amada cada día.<br><br>
-
-Eres mi persona favorita, mi paz,<br>
-y el amor más bonito que tengo. 💙
-</p>
-
-<button onclick="document.getElementById('music').play()">
-Tocar música 🎵
-</button>
-
-<audio id="music" controls style="margin-top:10px;width:100%;">
+<audio id="music">
 <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
 </audio>
 
-</div>
+<script>
+function playMusic(){
+document.getElementById("music").play();
+}
+</script>
 
 </body>
 </html>
-
 
