@@ -92,15 +92,11 @@
 </head>
 <body>
 
-    <audio id="musica" loop>
-        <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-The-Piano-Plays-Softly.mp3" type="audio/mpeg">
-    </audio>
-
     <div id="p1" class="pantalla">
         <div class="carta">
             <h2 style="color: #00c6ff;">Para el hombre de mi vida 💙</h2>
             <p>José Alberto, he guardado mis sentimientos en este rincón digital solo para ti...</p>
-            <button onclick="iniciarTodo()">Abrir con amor 💙</button>
+            <button onclick="navegar('p1', 'p2')">Abrir con amor 💙</button>
         </div>
     </div>
 
@@ -121,7 +117,7 @@
             <div style="text-align: left; font-style: italic; line-height: 1.6; font-size: 15px;">
                 <p>Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre o cuando siento tu presencia cerca.</p>
                 <p>Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo incondicional, mi confidente en los días grises y el amor más real que he conocido.</p>
-                <p>Nadie me conoce como tú, y nadie tiene esa magia para hacerme sentir en casa con solo una mirada.</p>
+                <p>Nadie me conoce como tú, y nadie tiene esa magia para hacerme sentir en casa con solo una mirada. Te amo más de lo que las palabras pueden expresar.</p>
             </div>
             <button onclick="navegar('p3', 'p4')">Por qué te elijo 👇</button>
         </div>
@@ -150,13 +146,6 @@
     </div>
 
     <script>
-        const audio = document.getElementById("musica");
-
-        function iniciarTodo() {
-            audio.play().catch(e => console.log("Audio activo"));
-            navegar('p1', 'p2');
-        }
-
         function navegar(actual, siguiente) {
             document.getElementById(actual).classList.add("oculta");
             document.getElementById(siguiente).classList.remove("oculta");
@@ -167,7 +156,7 @@
             navegar('p2', 'p3');
         }
 
-        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Te atrape! 😜", "Di que sí 💙"];
+        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Te atrapé! 😜", "Di que sí 💙"];
 
         function moverBoton() {
             const btnNo = document.getElementById("btnNo");
