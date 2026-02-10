@@ -73,9 +73,7 @@
             margin-top: 15px;
         }
 
-        button:hover { transform: scale(1.05); }
-
-        #btnNo { background: #ff4b2b; position: relative; transition: 0.2s; }
+        #btnNo { background: #ff4b2b; position: relative; transition: 0.1s; }
 
         .corazon {
             position: absolute;
@@ -101,16 +99,16 @@
         <div class="carta">
             <h2 style="color: #00c6ff;">Hola, José Alberto 💙</h2>
             <p>Hay un mensaje especial esperando por ti...</p>
-            <button onclick="navegar('p1', 'p2')">Entrar 💙</button>
+            <button onclick="iniciarTodo()">Entrar 💙</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
-            <h2 style="font-size: 26px;">José Alberto...</h2>
-            <p style="font-size: 18px;">¿Quieres ser mi San Valentín este año? 💙</p>
+            <h2>José Alberto...</h2>
+            <p>¿Quieres ser mi San Valentín? 💙</p>
             <div style="margin-top: 40px; min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 20px;">
-                <button onclick="navegar('p2', 'p3')">¡SÍ! 😍</button>
+                <button onclick="aceptarAmor()">¡SÍ! 😍</button>
                 <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
             </div>
         </div>
@@ -121,7 +119,6 @@
             <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
             <div style="text-align: left; font-style: italic; line-height: 1.6;">
                 <p>Eres la casualidad más bonita que me ha pasado. Gracias por cada risa, por cada abrazo y por ser ese refugio donde siempre quiero volver.</p>
-                <p>Nadie me hace sentir como tú lo haces, y hoy solo quiero recordarte lo mucho que te amo.</p>
             </div>
             <button onclick="navegar('p3', 'p4')">Sigue bajando... 👇</button>
         </div>
@@ -132,8 +129,6 @@
             <h2 style="color: #00c6ff;">Lo que más amo de nosotros 💙</h2>
             <div class="recuerdo-item">✨ Tu forma de cuidarme y hacerme sentir segura.</div>
             <div class="recuerdo-item">✨ Cada vez que me haces reír sin parar.</div>
-            <div class="recuerdo-item">✨ Los planes juntos, desde los más grandes hasta los más simples.</div>
-            <div class="recuerdo-item">✨ Simplemente, ser nosotros dos contra el mundo.</div>
             <button onclick="navegar('p4', 'p5')">Última cosita... 💙</button>
         </div>
     </div>
@@ -141,59 +136,48 @@
     <div id="p5" class="pantalla oculta">
         <div class="carta">
             <h1 style="font-size: 32px; color: #00c6ff;">¡TE AMO MUCHO!</h1>
-            <p>Gracias por ser el mejor compañero de vida.</p>
             <div style="font-size: 60px;">💙👩‍❤️‍👨💙</div>
             <p><b>Feliz San Valentín, mi vida.</b></p>
         </div>
     </div>
 
     <script>
-        // FRASES DIVERTIDAS ACTUALIZADAS
-        const frasesNo = [
-            "¿Seguro? 🥺", 
-            "¡Casi lo logras! 😂", 
-            "¡Nop! 🚫", 
-            "¿A poco no? 🧐", 
-            "¡Intenta de nuevo! 😜", 
-            "¡Mala persona! 😢", 
-            "Te estoy viendo... 👀", 
-            "¡Esa tecla no sirve! 😉",
-            "¡Ni lo pienses! 😤",
-            "Di que sí, ándale 💙",
-            "¡Frío, frío! ❄️",
-            "¡Me vas a hacer llorar! 😭",
-            "Error 404: No no encontrado 🚫",
-            "¡Te voy a acusar! 😤"
-        ];
+        const audio = document.getElementById("musica");
+
+        function iniciarTodo() {
+            // Esto fuerza al navegador a reproducir el audio
+            audio.play().catch(error => console.log("Error al reproducir:", error));
+            navegar('p1', 'p2');
+        }
 
         function navegar(actual, siguiente) {
-            if(actual === 'p1') {
-                const audio = document.getElementById("musica");
-                audio.play().catch(e => console.log("Audio esperando interacción"));
-            }
             document.getElementById(actual).classList.add("oculta");
             document.getElementById(siguiente).classList.remove("oculta");
         }
 
+        function aceptarAmor() {
+            alert("¡Sabía que dirías que sí! Eres lo mejor que me ha pasado en la vida. 😍💙");
+            navegar('p2', 'p3');
+        }
+
+        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Intenta de nuevo! 😜", "Di que sí 💙"];
+
         function moverBoton() {
             const btnNo = document.getElementById("btnNo");
             btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-            // Movimiento controlado
             const x = Math.random() * 120 - 60;
             const y = Math.random() * 120 - 60;
             btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
 
         function crearCorazon() {
-            const simbolos = ["💙", "✨", "☁️", "💧"];
             const item = document.createElement("div");
-            item.classList.add("corazon");
-            item.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
+            item.className = "corazon";
+            item.innerHTML = "💙";
             item.style.left = Math.random() * 100 + "vw";
             item.style.fontSize = (Math.random() * 20 + 10) + "px";
-            item.style.animationDuration = (Math.random() * 3 + 4) + "s";
             document.body.appendChild(item);
-            setTimeout(() => { item.remove(); }, 6000);
+            setTimeout(() => item.remove(), 6000);
         }
         setInterval(crearCorazon, 300);
     </script>
