@@ -8,8 +8,7 @@
 <style>
 body {
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #0f2027; /* Fondo oscuro sólido para asegurar visibilidad */
+    font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
     color: white;
     text-align: center;
@@ -17,25 +16,18 @@ body {
     height: 100vh;
 }
 
-/* Pantallas */
 .pantalla {
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.8s ease;
-    z-index: 10;
+    transition: opacity 0.8s;
 }
 
-.oculta {
-    opacity: 0;
-    pointer-events: none;
-}
+.oculta { opacity: 0; pointer-events: none; }
 
-/* Carta */
 .carta {
     max-width: 400px;
     width: 85%;
@@ -43,64 +35,50 @@ body {
     padding: 25px;
     border-radius: 20px;
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    animation: aparecer 1.5s ease;
+    position: relative;
 }
 
-/* Imagen dentro de la carta */
 .foto-jose {
     width: 100%;
-    max-height: 250px;
+    max-height: 200px;
     object-fit: cover;
     border-radius: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    margin-bottom: 15px;
 }
 
-@keyframes aparecer {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* Botón */
 button {
-    margin-top: 20px;
-    padding: 12px 30px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 50px;
+    border-radius: 25px;
     background: #00c6ff;
     color: white;
     font-weight: bold;
-    font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4);
     transition: 0.3s;
+    margin: 10px;
 }
 
-button:hover {
-    transform: scale(1.1);
-    background: #0072ff;
+/* Estilo específico para el botón NO */
+#btnNo {
+    position: absolute;
+    background: #ff4b2b;
 }
 
-/* Corazones */
 .corazon {
     position: absolute;
     color: #00c6ff;
-    font-size: 20px;
-    pointer-events: none;
     animation: subir 5s linear infinite;
-    z-index: 1;
+    z-index: -1;
 }
 
 @keyframes subir {
-    0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    0% { transform: translateY(110vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
 }
 </style>
 </head>
-
 <body>
 
 <audio id="musica" loop>
@@ -109,51 +87,64 @@ button:hover {
 
 <div id="pantalla1" class="pantalla">
     <div class="carta">
-        <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" alt="Para José" class="foto-jose">
-        
+        <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto-jose">
         <h2>Para ti, José Alberto 💙</h2>
-        <p>Desde que llegaste a mi vida todo cambió…</p>
-        <p>Tu cariño, tu protección y cada detalle me hacen sentir amada.</p>
-        <p>Eres mi persona favorita y mi paz. 💙</p>
-
-        <button onclick="siguiente()">Continuar 💙</button>
+        <p>Eres mi persona favorita y mi paz.</p>
+        <button onclick="irAPregunta()">Continuar 💙</button>
     </div>
 </div>
 
 <div id="pantalla2" class="pantalla oculta">
+    <div class="carta" style="height: 300px;">
+        <h2>José Alberto...</h2>
+        <h3>¿Quieres ser mi San Valentín? 💙</h3>
+        <div style="margin-top: 50px;">
+            <button onclick="irAFinal()">¡SÍ! 😍</button>
+            <button id="btnNo" onmouseover="moverBotonNo()">No</button>
+        </div>
+    </div>
+</div>
+
+<div id="pantalla3" class="pantalla oculta">
     <div class="carta">
-        <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" alt="Para José" class="foto-jose">
-        <h1>💙 ¡Feliz San Valentín! 💙</h1>
+        <h1>💙 ¡Sabía que dirías que sí! 💙</h1>
         <p>Gracias por existir, mi amor.</p>
-        <p>Siempre tú y yo.</p>
         <h2>Te amo, José Alberto 💙</h2>
     </div>
 </div>
 
 <script>
-function siguiente() {
-    // Reproducir música
-    var audio = document.getElementById("musica");
-    audio.play();
-
-    // Cambiar pantalla
+function irAPregunta() {
+    document.getElementById("musica").play();
     document.getElementById("pantalla1").classList.add("oculta");
     document.getElementById("pantalla2").classList.remove("oculta");
 }
 
-/* Corazones flotando */
+function irAFinal() {
+    document.getElementById("pantalla2").classList.add("oculta");
+    document.getElementById("pantalla3").classList.remove("oculta");
+}
+
+function moverBotonNo() {
+    const btnNo = document.getElementById("btnNo");
+    // Genera posiciones aleatorias dentro de la carta
+    const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+    const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+    
+    btnNo.style.position = "fixed";
+    btnNo.style.left = x + "px";
+    btnNo.style.top = y + "px";
+}
+
 function crearCorazon() {
     const corazon = document.createElement("div");
     corazon.classList.add("corazon");
     corazon.innerHTML = "💙";
     corazon.style.left = Math.random() * 100 + "vw";
     corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
-    corazon.style.animationDuration = (Math.random() * 3 + 3) + "s";
     document.body.appendChild(corazon);
-
     setTimeout(() => { corazon.remove(); }, 5000);
 }
-
 setInterval(crearCorazon, 300);
 </script>
 
