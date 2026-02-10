@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,94 +8,100 @@
     <style>
         body {
             margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', sans-serif;
+            background: #0f2027; /* Fondo sólido de respaldo */
             background: radial-gradient(circle, #203a43, #0f2027);
             color: white;
-            text-align: center;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden;
         }
 
-        .pantalla {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .oculta { 
-            display: none !important; /* Ahora usamos display none para asegurar que cambie */
-        }
-
-        .carta {
-            max-width: 420px;
+        /* Contenedor principal */
+        .contenedor {
             width: 85%;
+            max-width: 400px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 30px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 0 40px rgba(0, 198, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            max-height: 85vh;
-            overflow-y: auto;
+            padding: 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .seccion { display: none; }
+        .activa { display: block; animation: fadeIn 0.5s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .foto {
             width: 100%;
-            max-height: 180px;
+            height: 180px;
             object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(0, 198, 255, 0.5);
-        }
-
-        .recuerdo-item {
-            background: rgba(0, 198, 255, 0.1);
-            margin: 10px 0;
-            padding: 12px;
             border-radius: 15px;
-            border-left: 4px solid #00c6ff;
-            text-align: left;
-            font-size: 14px;
+            margin-bottom: 15px;
+            border: 2px solid #00c6ff;
         }
 
         button {
-            padding: 14px 25px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 50px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            border-radius: 25px;
+            background: #00c6ff;
             color: white;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
             font-size: 16px;
-            margin-top: 10px;
+            margin: 10px auto;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 198, 255, 0.3);
         }
 
-        #btnNo { 
-            background: #ff4b2b; 
+        .area-botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            min-height: 100px;
             position: relative;
-            z-index: 999;
+        }
+
+        #btnNo {
+            background: #ff4b2b;
+            margin: 0;
+            position: relative;
+            transition: 0.2s;
+        }
+
+        .recuerdo {
+            background: rgba(0, 198, 255, 0.1);
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 14px;
+            text-align: left;
+            border-left: 3px solid #00c6ff;
         }
 
         .corazon {
             position: absolute;
+            color: #00c6ff;
             pointer-events: none;
-            animation: subir 6s linear infinite;
-            z-index: -1;
+            animation: subir 5s linear infinite;
+            z-index: 1;
         }
 
         @keyframes subir {
-            0% { transform: translateY(110vh) scale(0); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+            from { transform: translateY(100vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
@@ -104,46 +111,49 @@
         <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
     </audio>
 
-    <div id="p1" class="pantalla">
-        <div class="carta">
+    <div class="contenedor">
+        
+        <div id="p1" class="seccion activa">
             <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
-            <h2 style="color: #00c6ff;">Para José Alberto 💙</h2>
-            <p>Preparé algo muy especial para ti...</p>
-            <button onclick="saltarA('p2')">Entrar 💙</button>
+            <h2>Para José Alberto 💙</h2>
+            <p>Tengo algo especial que decirte...</p>
+            <button onclick="cambiar(1, 2)">Abrir 💙</button>
         </div>
-    </div>
 
-    <div id="p2" class="pantalla oculta">
-        <div class="carta">
-            <h2>José Alberto... 💙</h2>
-            <p>¿Quieres ser mi San Valentín este año?</p>
-            <div style="margin-top:30px; min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 20px; position: relative;">
-                <button onclick="saltarA('p3')">¡SÍ! 😍</button>
-                <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
+        <div id="p2" class="seccion">
+            <h2>José Alberto...</h2>
+            <p>¿Quieres ser mi San Valentín? 💙</p>
+            <div class="area-botones">
+                <button onclick="cambiar(2, 3)">SÍ 😍</button>
+                <button id="btnNo" onmouseover="mover()">No</button>
             </div>
         </div>
-    </div>
 
-    <div id="p3" class="pantalla oculta">
-        <div class="carta">
-            <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
-            <div style="text-align: left; font-style: italic; font-size: 15px;">
-                <p>Eres mi lugar favorito y mi paz. Gracias por cuidarme tanto y por ser como eres conmigo.</p>
-                <p>No hay nadie más con quien prefiera compartir mi vida que contigo.</p>
-            </div>
-            <button onclick="saltarA('p4')">Sigue leyendo... 👇</button>
+        <div id="p3" class="seccion">
+            <h2 style="color:#00c6ff">Mi Amor...</h2>
+            <p style="font-style: italic; font-size: 15px;">"Eres mi paz, mi lugar favorito y el amor más bonito que la vida me regaló."</p>
+            <button onclick="cambiar(3, 4)">Continuar 👇</button>
         </div>
-    </div>
 
-    <div id="p4" class="pantalla oculta">
-        <div class="carta">
-            <h2 style="color: #00c6ff;">Lo que más amo 💙</h2>
-            <div class="recuerdo-item">✨ Tus abrazos que me hacen sentir segura.</div>
-            <div class="recuerdo-item">✨ Lo mucho que me haces reír cada día.</div>
-            <div class="recuerdo-item">✨ Tu apoyo incondicional en todo.</div>
-            <div class="recuerdo-item">✨ El amor tan bonito que nos tenemos.</div>
-            <button onclick="saltarA('p5')">Última cosita... 💙</button>
+        <div id="p4" class="seccion">
+            <h3>Lo que más amo 💙</h3>
+            <div class="recuerdo">✨ Tus abrazos que me protegen.</div>
+            <div class="recuerdo">✨ Cómo me haces reír siempre.</div>
+            <div class="recuerdo">✨ Tu forma única de quererme.</div>
+            <button onclick="cambiar(4, 5)">Algo más... 💙</button>
         </div>
+
+        <div id="p5" class="seccion">
+            <h1 style="color:#00c6ff">¡TE AMO!</h1>
+            <p>Gracias por estar en mi vida, mi amor.</p>
+            <div style="font-size: 40px;">👩‍❤️‍👨</div>
+            <p><b>Feliz San Valentín</b></p>
+        </div>
+
     </div>
 
-    <div id="
+    <script>
+        function cambiar(actual, siguiente) {
+            // Reproducir música
+            const audio = document.getElementById("musica");
+            audio
