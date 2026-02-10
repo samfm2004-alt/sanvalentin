@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
+            font-family: 'Arial', sans-serif;
             background: #0f2027;
             background: radial-gradient(circle, #203a43, #0f2027);
             color: white;
@@ -19,20 +19,18 @@
             overflow: hidden;
         }
 
-        .contenedor {
-            width: 90%;
+        /* Contenedor Único */
+        #contenedor-principal {
+            width: 85%;
             max-width: 380px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
+            padding: 25px;
             border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
-            z-index: 100; /* Asegura que esté por encima de los corazones */
+            z-index: 999;
         }
-
-        .seccion { display: none; }
-        .activa { display: block; }
 
         .foto {
             width: 100%;
@@ -41,9 +39,10 @@
             border-radius: 15px;
             margin-bottom: 15px;
             object-fit: cover;
-            display: block;
+            border: 2px solid #00c6ff;
         }
 
+        /* Botón General */
         button {
             padding: 15px 30px;
             border: none;
@@ -52,25 +51,25 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            font-size: 18px;
-            margin: 20px auto;
-            display: inline-block;
-            touch-action: manipulation; /* Optimizado para celulares */
+            font-size: 16px;
+            margin: 10px auto;
+            display: block;
         }
 
-        .area-botones {
-            position: relative;
-            min-height: 120px;
+        /* Botones pregunta */
+        .fila-botones {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
+            min-height: 80px;
+            margin-top: 20px;
         }
 
         #btnNo {
             background: #ff4b2b;
+            margin: 0;
             position: relative;
-            z-index: 101;
         }
 
         .recuerdo {
@@ -80,19 +79,20 @@
             border-radius: 10px;
             font-size: 14px;
             text-align: left;
-            border-left: 4px solid #00c6ff;
+            border-left: 3px solid #00c6ff;
         }
 
         .corazon {
             position: absolute;
-            color: rgba(0, 198, 255, 0.5);
-            pointer-events: none; /* Crucial: para que no bloqueen clics */
+            color: #00c6ff;
+            pointer-events: none;
             animation: subir 5s linear infinite;
+            z-index: 1;
         }
 
         @keyframes subir {
-            from { transform: translateY(110vh); }
-            to { transform: translateY(-10vh); }
+            from { transform: translateY(110vh); opacity: 1; }
+            to { transform: translateY(-10vh); opacity: 0; }
         }
     </style>
 </head>
@@ -102,31 +102,29 @@
         <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
     </audio>
 
-    <div class="contenedor">
-        
-        <div id="p1" class="seccion activa">
-            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto" onerror="this.style.display='none'">
+    <div id="contenedor-principal">
+        <div id="contenido">
+            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
             <h2>Para José Alberto 💙</h2>
-            <p>Tengo algo especial que decirte...</p>
-            <button onclick="cambiar(1, 2)">Entrar 💙</button>
+            <p>He preparado algo para ti...</p>
+            <button onclick="pantallaPregunta()">Abrir 💙</button>
         </div>
+    </div>
 
-        <div id="p2" class="seccion">
-            <h2>José Alberto...</h2>
-            <p>¿Quieres ser mi San Valentín? 💙</p>
-            <div class="area-botones">
-                <button onclick="cambiar(2, 3)">SÍ 😍</button>
-                <button id="btnNo" onmouseover="mover()" onclick="mover()">No</button>
-            </div>
-        </div>
+    <script>
+        const musica = document.getElementById("musica");
 
-        <div id="p3" class="seccion">
-            <h2 style="color:#00c6ff">Mi Amor...</h2>
-            <p><i>"Eres mi paz y el amor más bonito que la vida me regaló."</i></p>
-            <button onclick="cambiar(3, 4)">Continuar 👇</button>
-        </div>
+        // PANTALLA 2
+        function pantallaPregunta() {
+            musica.play().catch(() => {});
+            document.getElementById("contenido").innerHTML = `
+                <h2>José Alberto...</h2>
+                <p>¿Quieres ser mi San Valentín? 💙</p>
+                <div class="fila-botones">
+                    <button onclick="pantallaCarta()">SÍ 😍</button>
+                    <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
+                </div>
+            `;
+        }
 
-        <div id="p4" class="seccion">
-            <h3>Lo que más amo 💙</h3>
-            <div class="recuerdo">✨ Tus abrazos que me protegen.</div>
-            <div class="recuerdo">✨ Cómo me haces
+        // PANT
