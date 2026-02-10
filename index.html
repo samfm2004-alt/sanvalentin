@@ -5,259 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para José Alberto 💙</title>
     <style>
-        :root {
-            --primary: #00c6ff;
-            --secondary: #0072ff;
-            --accent: #ff4b2b;
-            --glass: rgba(255, 255, 255, 0.1);
-            --border: rgba(255, 255, 255, 0.2);
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            background: #0f2027;
-            background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
-            color: white;
-            text-align: center;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Fondo Animado */
-        .stars {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3;
-        }
-
-        .pantalla {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .oculta { 
-            opacity: 0; 
-            pointer-events: none; 
-            transform: scale(0.9) translateY(30px);
-            filter: blur(10px);
-        }
-
-        .carta {
-            max-width: 480px;
-            width: 85%;
-            background: var(--glass);
-            padding: 40px;
-            border-radius: 40px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
-                        inset 0 0 20px var(--border);
-            border: 1px solid var(--border);
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        /* Personalización de Scrollbar */
-        .carta::-webkit-scrollbar { width: 5px; }
-        .carta::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        .foto-drive {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            box-shadow: 0 0 25px var(--primary);
-            margin-bottom: 20px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1, h2 { 
-            margin: 10px 0;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        p { line-height: 1.6; font-size: 1.05rem; color: rgba(255,255,255,0.9); }
-
-        .recuerdo-item {
-            background: rgba(0, 198, 255, 0.1);
-            margin: 15px 0;
-            padding: 18px;
-            border-radius: 20px;
-            border-left: 5px solid var(--primary);
-            text-align: left;
-            transition: transform 0.3s ease;
-        }
-
-        .recuerdo-item:hover { transform: translateX(10px); background: rgba(0, 198, 255, 0.2); }
-
-        .btn-group {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        button {
-            padding: 15px 35px;
-            border: none;
-            border-radius: 50px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.3);
-        }
-
-        button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 25px rgba(0, 198, 255, 0.5);
-        }
-
-        #btnNo { background: var(--accent); position: relative; z-index: 10; }
-
-        .corazon {
-            position: absolute;
-            pointer-events: none;
-            animation: subir 6s linear infinite;
-            z-index: -1;
-            filter: drop-shadow(0 0 5px var(--primary));
-        }
-
-        @keyframes subir {
-            0% { transform: translateY(110vh) rotate(0deg) scale(0); opacity: 0; }
-            20% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) rotate(360deg) scale(1.5); opacity: 0; }
-        }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: radial-gradient(circle, #203a43, #0f2027); color: white; text-align: center; overflow: hidden; height: 100vh; display: flex; justify-content: center; align-items: center; }
+        .pantalla { position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: all 0.8s ease; }
+        .oculta { opacity: 0; pointer-events: none; transform: scale(0.8); }
+        .carta { max-width: 450px; width: 85%; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 30px; backdrop-filter: blur(20px); box-shadow: 0 0 40px rgba(0, 198, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); max-height: 85vh; overflow-y: auto; }
+        .recuerdo-item { background: rgba(0, 198, 255, 0.05); margin: 12px 0; padding: 15px; border-radius: 15px; border-left: 4px solid #00c6ff; text-align: left; font-size: 14px; line-height: 1.5; }
+        button { padding: 14px 30px; border: none; border-radius: 50px; background: linear-gradient(45deg, #00c6ff, #0072ff); color: white; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 16px; margin-top: 15px; }
+        #btnNo { background: #ff4b2b; position: relative; }
+        .corazon { position: absolute; pointer-events: none; animation: subir 6s linear infinite; z-index: -1; }
+        @keyframes subir { 0% { transform: translateY(110vh) scale(0); opacity: 0; } 50% { opacity: 0.6; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
     </style>
 </head>
 <body>
 
-    <div class="stars"></div>
-
-    <audio id="musicaFondo" loop>
-        <source src="https://docs.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+    <audio id="musica" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/04/And-The-Piano-Plays-Softly.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
-            <img src="https://docs.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto-drive">
-            <h2 style="color: var(--primary);">Para el hombre de mi vida 💙</h2>
-            <p>José Alberto, he guardado mis sentimientos en este rincón digital solo para ti...</p>
-            <button onclick="iniciar()">Abrir con amor 💙</button>
+            <h2 style="color: #00c6ff;">Para José Alberto 💙</h2>
+            <p>He guardado algo muy especial aquí dentro...</p>
+            <button onclick="iniciar()">Entrar con amor 💙</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
-            <h2 style="font-size: 1.8rem;">José Alberto...</h2>
-            <p style="font-size: 1.2rem;">¿Quieres ser mi San Valentín este año? 💙</p>
-            <div class="btn-group">
-                <button id="btnSi" onclick="aceptarAmor()">¡SÍ! 😍</button>
-                <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
-            </div>
+            <h2>José Alberto...</h2>
+            <p>¿Quieres ser mi San Valentín este año? 💙</p>
+            <button onclick="aceptar()">¡SÍ! 😍</button>
+            <button id="btnNo" onmouseover="mover()">No</button>
         </div>
     </div>
 
     <div id="p3" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: var(--primary);">Mi Amor Eterno... 💙</h2>
-            <div style="text-align: left; font-style: italic; font-size: 0.95rem;">
-                <p>Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo...</p>
-                <p>Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo incondicional...</p>
-                <p>Nadie me conoce como tú, y nadie tiene esa magia para hacerme sentir en casa con solo una mirada.</p>
-            </div>
-            <button onclick="navegar('p3', 'p4')">Por qué te elijo 👇</button>
+            <h2 style="color: #00c6ff;">Mi Amor Eterno...</h2>
+            <p style="text-align: left; font-style: italic;">Eres lo mejor que me ha pasado. Gracias por ser mi apoyo, mi paz y mi alegría. Nadie me hace sentir tan especial como tú lo haces.</p>
+            <button onclick="navegar('p3', 'p4')">¿Por qué estamos juntos? 👇</button>
         </div>
     </div>
 
     <div id="p4" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: var(--primary);">Por esto y más... 💙</h2>
-            <div class="recuerdo-item">✨ <b>Tu paz:</b> Porque en medio de cualquier caos, tus abrazos son mi refugio.</div>
-            <div class="recuerdo-item">✨ <b>Tu alegría:</b> Por hacerme reír hasta que me duele la cara.</div>
-            <div class="recuerdo-item">✨ <b>Nuestra conexión:</b> Porque no necesitamos palabras para entendernos.</div>
-            <div class="recuerdo-item">✨ <b>Tu paciencia:</b> Por cómo me cuidas cuando más lo necesito.</div>
-            <div class="recuerdo-item">✨ <b>Nuestro equipo:</b> Porque hemos aprendido a crecer juntos.</div>
-            <div class="recuerdo-item">✨ <b>Tu esencia:</b> Por la luz que irradias en mi vida cada día.</div>
-            <button onclick="navegar('p4', 'p5')">Mi promesa 💙</button>
+            <h2 style="color: #00c6ff;">Razones por las que te amo</h2>
+            <div class="recuerdo-item">✨ <b>Tu Paz:</b> Eres mi refugio en los días difíciles.</div>
+            <div class="recuerdo-item">✨ <b>Tu Risa:</b> Me haces feliz incluso sin intentarlo.</div>
+            <div class="recuerdo-item">✨ <b>Nosotros:</b> Porque somos el mejor equipo del mundo.</div>
+            <button onclick="navegar('p4', 'p5')">Final 💙</button>
         </div>
     </div>
 
     <div id="p5" class="pantalla oculta">
         <div class="carta">
-            <h1 style="font-size: 2.2rem; color: var(--primary); margin-bottom: 0;">¡TE AMO!</h1>
-            <h2 style="font-size: 1.5rem;">JOSÉ ALBERTO</h2>
-            <p>Prometo cuidarte y amarte cada día más.</p>
-            <div style="font-size: 4rem; margin: 15px 0;">👩‍❤️‍👨</div>
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--primary);">Feliz San Valentín, mi vida entera. 💙</p>
+            <h1>¡TE AMO! 💙</h1>
+            <p>Feliz San Valentín, mi vida.</p>
         </div>
     </div>
 
     <script>
-        const audio = document.getElementById("musicaFondo");
-        const btnNo = document.getElementById("btnNo");
-        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Piénsalo bien!", "Intenta de nuevo 😜", "Di que sí 💙"];
-
-        function iniciar() {
-            audio.play().catch(e => console.log("Audio play blocked"));
-            navegar('p1', 'p2');
+        function iniciar() { document.getElementById('musica').play(); navegar('p1', 'p2'); }
+        function navegar(a, s) { document.getElementById(a).classList.add('oculta'); document.getElementById(s).classList.remove('oculta'); }
+        function aceptar() { alert("¡Sabía que dirías que sí! Eres lo mejor de mi vida. 😍💙"); navegar('p2', 'p3'); }
+        function mover() { 
+            const b = document.getElementById('btnNo');
+            b.style.top = Math.random() * 80 + "%";
+            b.style.left = Math.random() * 80 + "%";
         }
-
-        function navegar(actual, siguiente) {
-            document.getElementById(actual).classList.add("oculta");
-            document.getElementById(siguiente).classList.remove("oculta");
-        }
-
-        function aceptarAmor() {
-            navegar('p2', 'p3');
-        }
-
-        function moverBoton() {
-            const maxX = window.innerWidth / 2 - btnNo.offsetWidth;
-            const maxY = window.innerHeight / 2 - btnNo.offsetHeight;
-            
-            const randomX = Math.random() * (maxX * 2) - maxX;
-            const randomY = Math.random() * (maxY * 2) - maxY;
-
-            btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
-            btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-        }
-
-        function crearCorazon() {
+        setInterval(() => {
             const c = document.createElement("div");
-            c.className = "corazon";
-            c.innerHTML = "💙";
+            c.className = "corazon"; c.innerHTML = "💙";
             c.style.left = Math.random() * 100 + "vw";
-            c.style.fontSize = (Math.random() * 25 + 15) + "px";
-            c.style.opacity = Math.random();
             document.body.appendChild(c);
             setTimeout(() => c.remove(), 6000);
-        }
-        setInterval(crearCorazon, 250);
+        }, 300);
     </script>
 </body>
 </html>
