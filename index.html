@@ -26,13 +26,13 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s ease;
         }
 
         .oculta { 
             opacity: 0; 
             pointer-events: none; 
-            transform: scale(0.8) translateY(20px);
+            transform: scale(0.9);
         }
 
         .carta {
@@ -46,7 +46,6 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             max-height: 85vh;
             overflow-y: auto;
-            position: relative;
         }
 
         .foto {
@@ -58,11 +57,10 @@
             border: 2px solid rgba(0, 198, 255, 0.5);
         }
 
-        /* Estilo para los recuerdos */
         .recuerdo-item {
             background: rgba(0, 198, 255, 0.1);
             margin: 10px 0;
-            padding: 15px;
+            padding: 12px;
             border-radius: 15px;
             border-left: 4px solid #00c6ff;
             text-align: left;
@@ -70,7 +68,7 @@
         }
 
         button {
-            padding: 14px 30px;
+            padding: 14px 25px;
             border: none;
             border-radius: 50px;
             background: linear-gradient(45deg, #00c6ff, #0072ff);
@@ -80,104 +78,25 @@
             transition: 0.3s;
             font-size: 16px;
             box-shadow: 0 5px 15px rgba(0, 198, 255, 0.4);
-            margin-top: 15px;
         }
 
-        button:hover { transform: scale(1.05); }
+        /* Contenedor controlado para que el NO no se pierda */
+        .area-botones {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 120px; 
+            position: relative;
+        }
 
-        #btnNo { background: #ff4b2b; position: relative; }
+        #btnNo { 
+            background: #ff4b2b; 
+            position: relative; 
+            transition: 0.15s; /* Movimiento más fluido y corto */
+            z-index: 10;
+        }
 
         .corazon {
-            position: absolute;
-            pointer-events: none;
-            animation: subir 6s linear infinite;
-            z-index: -1;
-        }
-
-        @keyframes subir {
-            0% { transform: translateY(110vh) scale(0); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <audio id="musica" loop>
-        <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
-    </audio>
-
-    <div id="p1" class="pantalla">
-        <div class="carta">
-            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
-            <h2 style="color: #00c6ff;">Hola, José Alberto 💙</h2>
-            <p>Hay un mensaje especial esperando por ti...</p>
-            <button onclick="navegar('p1', 'p2')">Entrar 💙</button>
-        </div>
-    </div>
-
-    <div id="p2" class="pantalla oculta">
-        <div class="carta">
-            <h2 style="font-size: 26px;">José Alberto...</h2>
-            <p style="font-size: 18px;">¿Quieres ser mi San Valentín este año? 💙</p>
-            <div style="margin-top: 40px; min-height: 100px;">
-                <button onclick="navegar('p2', 'p3')">¡SÍ! 😍</button>
-                <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="p3" class="pantalla oculta">
-        <div class="carta">
-            <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
-            <div style="text-align: left; font-style: italic; line-height: 1.6;">
-                <p>Eres la casualidad más bonita que me ha pasado. Gracias por cada risa, por cada abrazo y por ser ese refugio donde siempre quiero volver.</p>
-                <p>Nadie me hace sentir como tú lo haces, y hoy solo quiero recordarte lo mucho que te amo.</p>
-            </div>
-            <button onclick="navegar('p3', 'p4')">Sigue bajando... 👇</button>
-        </div>
-    </div>
-
-    <div id="p4" class="pantalla oculta">
-        <div class="carta">
-            <h2 style="color: #00c6ff;">Lo que más amo de nosotros 💙</h2>
-            <div class="recuerdo-item">✨ Tu forma de cuidarme y hacerme sentir segura.</div>
-            <div class="recuerdo-item">✨ Cada vez que me haces reír sin parar.</div>
-            <div class="recuerdo-item">✨ Los planes juntos, desde los más grandes hasta los más simples.</div>
-            <div class="recuerdo-item">✨ Simplemente, ser nosotros dos contra el mundo.</div>
-            <button onclick="navegar('p4', 'p5')">Última cosita... 💙</button>
-        </div>
-    </div>
-
-    <div id="p5" class="pantalla oculta">
-        <div class="carta">
-            <h1 style="font-size: 32px; color: #00c6ff;">¡TE AMO MUCHO!</h1>
-            <p>Gracias por ser el mejor compañero de vida.</p>
-            <div style="font-size: 60px;">💙👩‍❤️‍👨💙</div>
-            <p><b>Feliz San Valentín, mi vida.</b></p>
-        </div>
-    </div>
-
-    <script>
-        const frasesNo = ["¿Seguro? 🥺", "Piénsalo... 🧐", "¡No puedes! 😂", "Di que sí 💙", "Mala persona 😢", "¡Casi!", "Nop 🚫", "Esa tecla no sirve 😉"];
-
-        function navegar(actual, siguiente) {
-            if(actual === 'p1') document.getElementById("musica").play();
-            document.getElementById(actual).classList.add("oculta");
-            document.getElementById(siguiente).classList.remove("oculta");
-        }
-
-        function moverBoton() {
-            const btnNo = document.getElementById("btnNo");
-            btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-            const x = Math.random() * 160 - 80;
-            const y = Math.random() * 160 - 80;
-            btnNo.style.transform = `translate(${x}px, ${y}px)`;
-        }
-
-        function crearCorazon() {
-            const simbolos = ["💙", "✨", "☁️", "💧"];
-            const item = document.createElement("div");
-            item.classList.add("corazon");
-            item.innerHTML = simbolos[Math.floor(Math.random() * simbolos.length)];
-            item.style.left = Math.random() *
+            position:*
