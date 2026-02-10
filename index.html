@@ -5,19 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para José Alberto 💙</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap');
+
+        :root {
+            --neon: #00d2ff;
+            --shadow: rgba(0, 210, 255, 0.3);
+        }
 
         body {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: radial-gradient(circle at center, #1a2a33, #0d1418);
+            font-family: 'Quicksand', sans-serif;
+            background: #0a0b10;
             color: white;
-            text-align: center;
-            overflow: hidden;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+        }
+
+        /* Fondo de estrellas */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
         }
 
         .pantalla {
@@ -25,167 +37,165 @@
             width: 100%;
             height: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: all 0.8s ease-in-out;
+            transition: all 1s ease;
         }
 
-        .oculta { opacity: 0; pointer-events: none; transform: scale(0.9); }
+        .oculta { opacity: 0; pointer-events: none; transform: scale(1.1); filter: blur(10px); }
 
         .carta {
-            max-width: 450px;
-            width: 85%;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 35px;
-            border-radius: 25px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            max-height: 85vh;
-            overflow-y: auto;
+            border-radius: 40px;
+            padding: 40px 20px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            text-align: center;
             position: relative;
         }
 
-        .foto {
-            width: 150px; height: 150px;
+        .foto-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--neon), #3a7bd5);
+            box-shadow: 0 0 20px var(--shadow);
+        }
+
+        .foto-container img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid #00c6ff;
-            box-shadow: 0 0 20px rgba(0, 198, 255, 0.4);
+            border: 3px solid #0a0b10;
         }
 
-        .gif-triste {
-            width: 120px;
-            margin-top: 15px;
-            border-radius: 10px;
-            display: none; /* Se activa con JS */
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 32px;
+            color: var(--neon);
+            margin-bottom: 15px;
         }
 
-        h2 { color: #00c6ff; font-weight: 600; font-size: 24px; margin-bottom: 15px; }
+        p { font-size: 15px; line-height: 1.6; color: #b0b3b8; }
 
-        .texto-carta { text-align: left; font-size: 14.5px; line-height: 1.6; color: #dcdcdc; font-style: italic; }
-
-        .razon-item {
-            background: rgba(0, 198, 255, 0.08);
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #00c6ff;
-            text-align: left;
-            font-size: 13.5px;
-        }
-
-        .botones-container {
+        .botones {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            margin-top: 20px;
-            min-height: 60px;
+            gap: 15px;
+            margin-top: 30px;
+            height: 100px; /* Espacio para que el No se mueva */
+            position: relative;
         }
 
         button {
-            padding: 12px 30px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 50px;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            color: white;
-            font-weight: 600;
+            border-radius: 15px;
+            font-weight: 700;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        #btnSi {
+            background: var(--neon);
+            color: #0a0b10;
+            box-shadow: 0 0 15px var(--shadow);
+            z-index: 10;
         }
 
         #btnNo {
             background: #ff4b2b;
-            transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: white;
+            position: relative;
+        }
+
+        .gif-triste {
+            width: 80px;
+            display: none;
+            margin: 10px auto;
         }
 
         .corazon {
-            position: fixed;
-            color: #00c6ff;
-            font-size: 18px;
-            animation: subir 6s linear infinite;
-            z-index: -1;
-            opacity: 0.5;
+            position: absolute;
+            color: var(--neon);
+            pointer-events: none;
+            animation: flow 4s linear infinite;
         }
 
-        @keyframes subir {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            20% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        @keyframes flow {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
+    <div class="stars"></div>
+
     <audio id="musica" loop>
-        <source src="https://docs.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+        <source src="https://www.chosic.com/wp-content/uploads/2021/05/Rainy-Day-Emotional-Piano-Music.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
-            <img src="https://docs.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
-            <h2>Para ti, José Alberto 💙</h2>
-            <p>He guardado mis sentimientos en este rincón digital solo para ti...</p>
-            <button onclick="iniciar()">Entrar con amor 💙</button>
+            <div class="foto-container">
+                <img src="https://docs.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
+            </div>
+            <h2>Para José Alberto</h2>
+            <p>Hay momentos que se quedan grabados para siempre, y todos los míos son a tu lado.</p>
+            <button id="btnSi" onclick="iniciar()">Entrar 💙</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
-            <h2>Una pregunta... 💎</h2>
-            <p>¿Quieres ser mi San Valentín este año? 💙</p>
-            
-            <img id="gif" class="gif-triste" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5tY3R3eGd5Z3RkZ3R5Z3RkZ3R5Z3RkZ3R5Z3RkZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/OPU6wUKARAyWc/giphy.gif">
-
-            <div class="botones-container">
-                <button onclick="aceptar()">¡SÍ! 😍</button>
-                <button id="btnNo" onmouseover="moverBoton()">No</button>
+            <img id="sadGif" class="gif-triste" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueG5tY3R3eGd5Z3RkZ3R5Z3RkZ3R5Z3RkZ3R5Z3RkZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/OPU6wUKARAyWc/giphy.gif">
+            <h2 id="pregunta">¿Quieres ser mi San Valentín?</h2>
+            <div class="botones" id="areaBotones">
+                <button id="btnSiReal" onclick="aceptar()">¡SÍ! 😍</button>
+                <button id="btnNo" onmouseover="huir()">No</button>
             </div>
         </div>
     </div>
 
     <div id="p3" class="pantalla oculta">
         <div class="carta">
-            <h2>Mi Amor Eterno... 💙</h2>
-            <div class="texto-carta">
-                <p>Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo.</p>
-                <p>Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo incondicional.</p>
-                <p>Nadie me conoce como tú, y nadie tiene esa magia para hacerme sentir en casa con solo una mirada.</p>
-            </div>
-            <button onclick="navegar('p3', 'p4')">Por qué te elijo 👇</button>
+            <h2>Mi Amor Eterno</h2>
+            <p style="text-align: left; font-size: 14px;">
+                Eres mi primer pensamiento al despertar. Gracias por ser mi apoyo incondicional y el amor más real que he conocido. Nadie me conoce como tú. 💙
+            </p>
+            <button id="btnSi" onclick="navegar('p3', 'p4')">Siguiente ✨</button>
         </div>
     </div>
 
     <div id="p4" class="pantalla oculta">
         <div class="carta">
-            <h2>Por esto y más... 💙</h2>
-            <div class="razon-item">✨ <b>Tu paz:</b> Tus abrazos son el único refugio.</div>
-            <div class="razon-item">✨ <b>Tu alegría:</b> Por hacerme reír hasta que me duele la cara.</div>
-            <div class="razon-item">✨ <b>Nuestro equipo:</b> Porque amo proteger nuestro nosotros.</div>
-            <button onclick="navegar('p4', 'p5')">Mi promesa 💙</button>
-        </div>
-    </div>
-
-    <div id="p5" class="pantalla oculta">
-        <div class="carta">
-            <h1>♾️</h1>
-            <h2>¡TE AMO, JOSÉ ALBERTO!</h2>
-            <p>Llevamos 296 días juntos y prometo que serán muchos más.</p>
-            <p style="font-weight: bold; color: #00c6ff;">Feliz San Valentín, mi vida entera. 💙</p>
+            <h2>Te Amo Infinitamente</h2>
+            <p>296 días de pura felicidad y contando...</p>
+            <div style="font-size: 40px; margin: 15px;">♾️👩‍❤️‍👨💙</div>
+            <p style="color: var(--neon); font-weight: bold;">Feliz San Valentín, José Alberto.</p>
         </div>
     </div>
 
     <script>
-        const audio = document.getElementById('musica');
-        const frasesNo = ["¿Seguro? 🥺", "¡Piénsalo! 😂", "¡Nop! 🚫", "Casi lo tienes 😜", "Ni lo intentes 💙", "¡Anda ya! 😅"];
-        const gif = document.getElementById('gif');
+        const musica = document.getElementById('musica');
+        const btnSi = document.getElementById('btnSiReal');
+        const btnNo = document.getElementById('btnNo');
+        const gif = document.getElementById('sadGif');
+        let scaleSi = 1;
+        let scaleNo = 1;
 
         function iniciar() {
-            audio.play();
+            musica.play();
             navegar('p1', 'p2');
         }
 
@@ -194,33 +204,43 @@
             document.getElementById(siguiente).classList.remove('oculta');
         }
 
-        function moverBoton() {
-            const btn = document.getElementById('btnNo');
-            gif.style.display = "inline-block"; // Muestra el gif triste
+        function huir() {
+            gif.style.display = 'block';
             
-            // Cambia el texto del botón
-            btn.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
+            // 1. El botón NO se mueve un poco pero se queda cerca
+            const x = Math.random() * 60 - 30;
+            const y = Math.random() * 40 - 20;
             
-            // Mueve el botón dentro de los límites de la carta
-            const x = Math.random() * 150 - 75;
-            const y = Math.random() * 100 - 50;
-            btn.style.transform = `translate(${x}px, ${y}px)`;
+            // 2. El botón NO se hace más pequeño
+            scaleNo -= 0.1;
+            if(scaleNo < 0.5) scaleNo = 0.5;
+            
+            // 3. El botón SÍ se hace más grande
+            scaleSi += 0.2;
+
+            btnNo.style.transform = `translate(${x}px, ${y}px) scale(${scaleNo})`;
+            btnSi.style.transform = `scale(${scaleSi})`;
+            
+            const frases = ["¿Seguro?", "¡Nooo!", "Piénsalo", "🥺", "Malo..."];
+            btnNo.innerText = frases[Math.floor(Math.random()*frases.length)];
         }
 
         function aceptar() {
-            alert("¡Sabía que dirías que sí! Eres mi vida entera. 😍💙");
+            alert("¡Sabía que dirías que sí! Me haces inmensamente feliz. 💙");
             navegar('p2', 'p3');
         }
 
-        // Lluvia de corazones
+        // Estrellas/Corazones de fondo
         setInterval(() => {
             const c = document.createElement("div");
             c.className = "corazon";
             c.innerHTML = "💙";
             c.style.left = Math.random() * 100 + "vw";
+            c.style.bottom = "-20px";
+            c.style.fontSize = Math.random() * 15 + 10 + "px";
             document.body.appendChild(c);
-            setTimeout(() => c.remove(), 6000);
-        }, 400);
+            setTimeout(() => c.remove(), 4000);
+        }, 300);
     </script>
 </body>
 </html>
