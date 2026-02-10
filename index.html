@@ -57,7 +57,7 @@
             border-left: 4px solid #00c6ff;
             text-align: left;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         button {
@@ -93,14 +93,14 @@
 <body>
 
     <audio id="musica" loop>
-        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rain-on-the-window-Piano-Music.mp3" type="audio/mpeg">
+        <source src="https://www.chosic.com/wp-content/uploads/2020/06/Warm-Memories-Beautiful-Piano-Music.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Hola, José Alberto 💙</h2>
-            <p>He preparado algo muy especial para ti porque te mereces el mundo entero...</p>
-            <button onclick="iniciarTodo()">Entrar 💙</button>
+            <h2 style="color: #00c6ff;">Para el hombre de mi vida 💙</h2>
+            <p>José Alberto, he guardado mis sentimientos en este pequeño rincón digital solo para ti...</p>
+            <button onclick="iniciarTodo()">Abrir con amor 💙</button>
         </div>
     </div>
 
@@ -117,77 +117,19 @@
 
     <div id="p3" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
-            <div style="text-align: left; font-style: italic; line-height: 1.6;">
-                <p>Eres la casualidad más bonita que me ha pasado. Gracias por cada risa, por cada abrazo y por ser ese refugio donde siempre quiero volver.</p>
-                <p>Nadie me hace sentir como tú lo haces, y hoy solo quiero recordarte lo mucho que te amo y lo feliz que soy a tu lado.</p>
+            <h2 style="color: #00c6ff;">Mi Amor Eterno... 💙</h2>
+            <div style="text-align: left; font-style: italic; line-height: 1.6; font-size: 15px;">
+                <p>Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre.</p>
+                <p>Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo, mi confidente y el amor de mi vida.</p>
             </div>
-            <button onclick="navegar('p3', 'p4')">Sigue bajando... 👇</button>
+            <button onclick="navegar('p3', 'p4')">¿Por qué tú? 👇</button>
         </div>
     </div>
 
     <div id="p4" class="pantalla oculta">
         <div class="carta">
-            <h2 style="color: #00c6ff;">Lo que más amo de nosotros 💙</h2>
-            <div class="recuerdo-item">✨ Tu forma de cuidarme y hacerme sentir la persona más segura del mundo.</div>
-            <div class="recuerdo-item">✨ Cada vez que me haces reír sin parar, incluso en los días difíciles.</div>
-            <div class="recuerdo-item">✨ La paz que siento cuando simplemente estamos juntos, sin decir nada.</div>
-            <div class="recuerdo-item">✨ Nuestros planes, desde los más grandes hasta los más simples como ver una película.</div>
-            <div class="recuerdo-item">✨ Cómo nos apoyamos siempre y la complicidad que solo nosotros tenemos.</div>
-            <div class="recuerdo-item">✨ Simplemente, el hecho de ser nosotros dos contra el mundo.</div>
-            <button onclick="navegar('p4', 'p5')">Última cosita... 💙</button>
-        </div>
-    </div>
-
-    <div id="p5" class="pantalla oculta">
-        <div class="carta">
-            <h1 style="font-size: 32px; color: #00c6ff;">¡TE AMO MUCHO!</h1>
-            <p>Gracias por ser el mejor compañero de vida que pude imaginar.</p>
-            <div style="font-size: 60px;">💙👩‍❤️‍👨💙</div>
-            <p><b>Feliz San Valentín, mi vida.</b></p>
-        </div>
-    </div>
-
-    <script>
-        const audio = document.getElementById("musica");
-
-        function iniciarTodo() {
-            audio.play().catch(e => console.log("Audio listo"));
-            navegar('p1', 'p2');
-        }
-
-        function navegar(actual, siguiente) {
-            document.getElementById(actual).classList.add("oculta");
-            document.getElementById(siguiente).classList.remove("oculta");
-        }
-
-        function aceptarAmor() {
-            // FRASE QUE ME PEDISTE
-            alert("¡Sabía que dirías que sí! Eres lo mejor que me ha pasado en la vida. 😍💙");
-            navegar('p2', 'p3');
-        }
-
-        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Te atrape! 😜", "Di que sí 💙"];
-
-        function moverBoton() {
-            const btnNo = document.getElementById("btnNo");
-            btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-            const x = Math.random() * 120 - 60;
-            const y = Math.random() * 120 - 60;
-            btnNo.style.transform = `translate(${x}px, ${y}px)`;
-        }
-
-        function crearCorazon() {
-            const item = document.createElement("div");
-            item.className = "corazon";
-            item.innerHTML = "💙";
-            item.style.left = Math.random() * 100 + "vw";
-            item.style.fontSize = (Math.random() * 20 + 10) + "px";
-            document.body.appendChild(item);
-            setTimeout(() => item.remove(), 6000);
-        }
-        setInterval(crearCorazon, 300);
-    </script>
-</body>
-</html>
+            <h2 style="color: #00c6ff;">Por esto y más, te elijo a ti 💙</h2>
+            <div class="recuerdo-item">✨ <b>Nuestra conexión:</b> Porque no necesito decir palabras para que sepas qué estoy pensando o cómo me siento.</div>
+            <div class="recuerdo-item">✨ <b>Tu paz:</b> Porque en medio de cualquier tormenta, tus abrazos son el único lugar donde me siento segura.</div>
+            <div class="
 
