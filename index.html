@@ -50,13 +50,14 @@
         }
 
         .recuerdo-item {
-            background: rgba(0, 198, 255, 0.1);
-            margin: 10px 0;
+            background: rgba(0, 198, 255, 0.05);
+            margin: 12px 0;
             padding: 15px;
             border-radius: 15px;
             border-left: 4px solid #00c6ff;
             text-align: left;
             font-size: 14px;
+            line-height: 1.4;
         }
 
         button {
@@ -92,21 +93,21 @@
 <body>
 
     <audio id="musica" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://www.chosic.com/wp-content/uploads/2021/07/Rain-on-the-window-Piano-Music.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
             <h2 style="color: #00c6ff;">Hola, José Alberto 💙</h2>
-            <p>Hay un mensaje especial esperando por ti...</p>
+            <p>He preparado algo muy especial para ti porque te mereces el mundo entero...</p>
             <button onclick="iniciarTodo()">Entrar 💙</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
-            <h2>José Alberto...</h2>
-            <p>¿Quieres ser mi San Valentín? 💙</p>
+            <h2 style="font-size: 26px;">José Alberto...</h2>
+            <p style="font-size: 18px;">¿Quieres ser mi San Valentín este año? 💙</p>
             <div style="margin-top: 40px; min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 20px;">
                 <button onclick="aceptarAmor()">¡SÍ! 😍</button>
                 <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
@@ -119,6 +120,7 @@
             <h2 style="color: #00c6ff;">Mi Amor... 💙</h2>
             <div style="text-align: left; font-style: italic; line-height: 1.6;">
                 <p>Eres la casualidad más bonita que me ha pasado. Gracias por cada risa, por cada abrazo y por ser ese refugio donde siempre quiero volver.</p>
+                <p>Nadie me hace sentir como tú lo haces, y hoy solo quiero recordarte lo mucho que te amo y lo feliz que soy a tu lado.</p>
             </div>
             <button onclick="navegar('p3', 'p4')">Sigue bajando... 👇</button>
         </div>
@@ -127,8 +129,12 @@
     <div id="p4" class="pantalla oculta">
         <div class="carta">
             <h2 style="color: #00c6ff;">Lo que más amo de nosotros 💙</h2>
-            <div class="recuerdo-item">✨ Tu forma de cuidarme y hacerme sentir segura.</div>
-            <div class="recuerdo-item">✨ Cada vez que me haces reír sin parar.</div>
+            <div class="recuerdo-item">✨ Tu forma de cuidarme y hacerme sentir la persona más segura del mundo.</div>
+            <div class="recuerdo-item">✨ Cada vez que me haces reír sin parar, incluso en los días difíciles.</div>
+            <div class="recuerdo-item">✨ La paz que siento cuando simplemente estamos juntos, sin decir nada.</div>
+            <div class="recuerdo-item">✨ Nuestros planes, desde los más grandes hasta los más simples como ver una película.</div>
+            <div class="recuerdo-item">✨ Cómo nos apoyamos siempre y la complicidad que solo nosotros tenemos.</div>
+            <div class="recuerdo-item">✨ Simplemente, el hecho de ser nosotros dos contra el mundo.</div>
             <button onclick="navegar('p4', 'p5')">Última cosita... 💙</button>
         </div>
     </div>
@@ -136,6 +142,7 @@
     <div id="p5" class="pantalla oculta">
         <div class="carta">
             <h1 style="font-size: 32px; color: #00c6ff;">¡TE AMO MUCHO!</h1>
+            <p>Gracias por ser el mejor compañero de vida que pude imaginar.</p>
             <div style="font-size: 60px;">💙👩‍❤️‍👨💙</div>
             <p><b>Feliz San Valentín, mi vida.</b></p>
         </div>
@@ -145,8 +152,7 @@
         const audio = document.getElementById("musica");
 
         function iniciarTodo() {
-            // Esto fuerza al navegador a reproducir el audio
-            audio.play().catch(error => console.log("Error al reproducir:", error));
+            audio.play().catch(e => console.log("Audio listo"));
             navegar('p1', 'p2');
         }
 
@@ -156,11 +162,12 @@
         }
 
         function aceptarAmor() {
+            // FRASE QUE ME PEDISTE
             alert("¡Sabía que dirías que sí! Eres lo mejor que me ha pasado en la vida. 😍💙");
             navegar('p2', 'p3');
         }
 
-        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Intenta de nuevo! 😜", "Di que sí 💙"];
+        const frasesNo = ["¿Seguro? 🥺", "¡Casi! 😂", "¡Nop! 🚫", "¡Te atrape! 😜", "Di que sí 💙"];
 
         function moverBoton() {
             const btnNo = document.getElementById("btnNo");
@@ -183,3 +190,4 @@
     </script>
 </body>
 </html>
+
