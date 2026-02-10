@@ -49,16 +49,6 @@
             position: relative;
         }
 
-        .foto {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(0, 198, 255, 0.5);
-        }
-
-        /* Estilo para los recuerdos */
         .recuerdo-item {
             background: rgba(0, 198, 255, 0.1);
             margin: 10px 0;
@@ -85,7 +75,7 @@
 
         button:hover { transform: scale(1.05); }
 
-        #btnNo { background: #ff4b2b; position: relative; }
+        #btnNo { background: #ff4b2b; position: relative; transition: 0.2s; }
 
         .corazon {
             position: absolute;
@@ -104,12 +94,11 @@
 <body>
 
     <audio id="musica" loop>
-        <source src="https://drive.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
-            <img src="https://drive.google.com/uc?export=download&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5" class="foto">
             <h2 style="color: #00c6ff;">Hola, José Alberto 💙</h2>
             <p>Hay un mensaje especial esperando por ti...</p>
             <button onclick="navegar('p1', 'p2')">Entrar 💙</button>
@@ -120,7 +109,7 @@
         <div class="carta">
             <h2 style="font-size: 26px;">José Alberto...</h2>
             <p style="font-size: 18px;">¿Quieres ser mi San Valentín este año? 💙</p>
-            <div style="margin-top: 40px; min-height: 100px;">
+            <div style="margin-top: 40px; min-height: 100px; display: flex; justify-content: center; align-items: center; gap: 20px;">
                 <button onclick="navegar('p2', 'p3')">¡SÍ! 😍</button>
                 <button id="btnNo" onmouseover="moverBoton()" onclick="moverBoton()">No</button>
             </div>
@@ -159,10 +148,29 @@
     </div>
 
     <script>
-        const frasesNo = ["¿Seguro? 🥺", "Piénsalo... 🧐", "¡No puedes! 😂", "Di que sí 💙", "Mala persona 😢", "¡Casi!", "Nop 🚫", "Esa tecla no sirve 😉"];
+        // FRASES DIVERTIDAS ACTUALIZADAS
+        const frasesNo = [
+            "¿Seguro? 🥺", 
+            "¡Casi lo logras! 😂", 
+            "¡Nop! 🚫", 
+            "¿A poco no? 🧐", 
+            "¡Intenta de nuevo! 😜", 
+            "¡Mala persona! 😢", 
+            "Te estoy viendo... 👀", 
+            "¡Esa tecla no sirve! 😉",
+            "¡Ni lo pienses! 😤",
+            "Di que sí, ándale 💙",
+            "¡Frío, frío! ❄️",
+            "¡Me vas a hacer llorar! 😭",
+            "Error 404: No no encontrado 🚫",
+            "¡Te voy a acusar! 😤"
+        ];
 
         function navegar(actual, siguiente) {
-            if(actual === 'p1') document.getElementById("musica").play();
+            if(actual === 'p1') {
+                const audio = document.getElementById("musica");
+                audio.play().catch(e => console.log("Audio esperando interacción"));
+            }
             document.getElementById(actual).classList.add("oculta");
             document.getElementById(siguiente).classList.remove("oculta");
         }
@@ -170,8 +178,9 @@
         function moverBoton() {
             const btnNo = document.getElementById("btnNo");
             btnNo.innerText = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-            const x = Math.random() * 160 - 80;
-            const y = Math.random() * 160 - 80;
+            // Movimiento controlado
+            const x = Math.random() * 120 - 60;
+            const y = Math.random() * 120 - 60;
             btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
 
