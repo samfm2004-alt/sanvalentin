@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para alguien muy especial 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap'); /* Fuente extra para títulos más dulces */
+
+        :root {
+            --pink-light: #fbe9e7; /* Rosa muy claro */
+            --pink-medium: #ffcdd2; /* Rosa pastel */
+            --pink-dark: #ef9a9a; /* Rosa un poco más fuerte */
+            --text-color-dark: #880e4f; /* Color oscuro para texto principal */
+            --text-color-light: #d81b60; /* Color para highlights */
+            --button-yes: #f48fb1; /* Rosa botón Sí */
+            --button-no: #e1bee7; /* Lila botón No */
+            --shadow-color: rgba(244, 143, 177, 0.4);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Cambiado a min-height para mejor compatibilidad */
+            background: linear-gradient(135deg, #ffe0e9 0%, #e0f2f7 100%); /* Fondo degradado suave */
+            font-family: 'Quicksand', sans-serif;
+            overflow: hidden; /* Oculta barras de desplazamiento si el contenido no cabe */
+            position: relative;
+        }
+
+        /* Efecto de olas/ondas en el fondo */
+        .wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23fce9e7" fill-opacity="1" d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,256C960,277,1056,267,1152,250.7C1248,235,1344,213,1392,202.7L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: bottom;
+            opacity: 0.7;
+            animation: waveFlow 20s linear infinite alternate;
+        }
+
+        @keyframes waveFlow {
+            from { transform: translateX(0); }
+            to { transform: translateX(-5%); }
+        }
+
+        .contenedor-principal {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95); /* Fondo casi blanco para contraste */
+            padding: 45px 35px;
+            border-radius: 40px; /* Bordes más suaves */
+            box-shadow: 0 15px 40px var(--shadow-color); /* Sombra más pronunciada */
+            backdrop-filter: blur(15px); /* Efecto de cristal */
+            border: 3px solid var(--pink-medium); /* Borde suave */
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            z-index: 20; /* Asegura que esté por encima de las ondas y partículas */
+        }
+
+        h1 {
+            font-family: 'Caveat', cursive; /* Fuente más amigable para el título */
+            color: var(--text-color-dark);
+            font-size: 38px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5); /* Suave sombra al texto */
+        }
+
+        p {
+            color: var(--text-color-dark);
+            font-size: 19px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Más espacio entre botones */
+            margin-top: 30px;
+            min-height: 70px; /* Asegura espacio para el movimiento */
+        }
+
+        button {
+            padding: 14px 30px; /* Más padding para que se vean mejor */
+            border: none;
+            border-radius: 30px; /* Bordes más redondeados */
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* Transición más suave */
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        #btnSi {
+            background-color: var(--button-yes);
+            color: white;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        #btnSi:hover {
+            background-color: #f06292; /* Un rosa un poco más fuerte al pasar el ratón */
+            transform: translateY(-3px) scale(1.05); /* Efecto 3D y de crecimiento */
+        }
+
+        #btnNo {
+            background-color: var(--button-no);
+            color: var(--text-color-dark);
+            border: 1px solid var(--pink-dark); /* Borde sutil */
+            position: relative; /* Para el movimiento */
+            font-size: 17px;
+        }
+
+        /* Pantallas de contenido */
+        .pantalla {
+            display: none;
+        }
+
+        .activa {
+            display: block;
+            animation: slideIn 0.8s forwards; /* Animación de entrada */
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Partículas flotantes */
+        .particle {
+            position: absolute;
+            color: var(--pink-dark);
+            pointer-events: none;
+            animation: floatAndFade 6s linear infinite;
+            font-size: 1.2em;
+            opacity: 0.8;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes floatAndFade {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            25% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) translateX(var(--x-end)) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wave-bg"></div>
+    <audio id="musica" loop>
+        <source src="https://files.catbox.moe/vqdpse.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="contenedor-principal">
+        <div id="p1" class="pantalla activa">
+            <h1>¡Hola, hermosa! 💖</h1>
+            <p>He estado pensando en algo muy especial y quería compartirlo contigo de una forma linda...</p>
+            <p style="font-style: italic; color: var(--text-color-light);">Es algo sencillo, pero con mucho cariño.</p>
+            <button id="btnSi" onclick="siguiente()">¡Dime! 😊</button>
+        </div>
+
+        <div id="p2" class="pantalla">
+            <h1>Tengo una propuesta... 🌷</h1>
+            <p>Me preguntaba si te gustaría...</p>
+            <p><strong>¿Pasar el 14 de febrero conmigo?</strong></p>
+            <p style="font-size: 15px; color: var(--text-color-dark);">
+                (Plan relax, divertido y con muy buena compañía. ¡Como amigos especiales!)
+            </p>
+            
+            <div class="botones">
+                <button id="btnSiReal" onclick="aceptar()">¡CLARO QUE SÍ! 🥰</button>
+                <button id="btnNo" onmouseover="moverBoton()">No 😔</button>
+            </div>
+        </div>
+
+        <div id="p3" class="pantalla">
+            <h1>¡SÍ! ¡Qué emoción! 🎉</h1>
+            <p>¡Sabía que dirías que sí! Me hace muchísima ilusión.</p>
+            <p>Este 14 de febrero será inolvidable, ¡te lo prometo!</p>
+            <p style="font-size: 30px;">💖✨🌸</p>
+            <p style="font-size: 16px; color: var(--text-color-light);">Ya tengo algunas ideas geniales para ese día.</p>
+        </div>
+    </div>
+
+    <script>
+        const musica = document.getElementById('musica');
+        const btnSiReal = document.getElementById('btnSiReal');
+        const btnNo = document.getElementById('btnNo');
+
+        const frasesNo = [
+            "¿En serio? ¡Mi corazón se rompe! 💔",
+            "¡Ay no! ¡Dame otra oportunidad! 🥺",
+            "¿Segura segura? 🧐",
+            "¡No te atrevas! 😉",
+            "Piénsalo otra vez, te conviene... 😏",
+            "Mi plan es secreto, ¡pero es genial! 🤫"
+        ];
+        let currentPhraseIndex = 0;
+
+        function siguiente() {
+            musica.play().catch(e => console.log("Audio play prevented:", e));
+            document.getElementById('p1').classList.remove('activa');
+            document.getElementById('p2').classList.add('activa');
+        }
+
+        function moverBoton() {
+            // Mueve el botón dentro de un rango más pequeño y controlado
+            const x = Math.random() * 80 - 40; // Mueve entre -40px y +40px
+            const y = Math.random() * 50 - 25; // Mueve entre -25px y +25px
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+
+            // Cambia la frase
+            btnNo.innerText = frasesNo[currentPhraseIndex];
+            currentPhraseIndex = (currentPhraseIndex + 1) % frasesNo.length;
+
+            // Haz que el botón "Sí" se haga un poco más grande
+            btnSiReal.style.transform = `scale(1.15)`;
+            btnSiReal.style.backgroundColor = '#f06292'; // Un rosa más intenso
+            
+            // Restablece el botón Sí después de un corto tiempo para un efecto de "latido"
+            setTimeout(() => {
+                btnSiReal.style.transform = `scale(1)`;
+                btnSiReal.style.backgroundColor = 'var(--button-yes)';
+            }, 300);
+        }
+
+        function aceptar() {
+            document.getElementById('p2').classList.remove('activa');
+            document.getElementById('p3').classList.add('activa');
+            lanzarParticulasConfeti(); // Lanza un confeti de brillos al aceptar
+        }
+
+        // Partículas flotantes de fondo
+        setInterval(() => {
+            const p = document.createElement("div");
+            p.className = "particle";
+            const symbols = ["💖", "✨", "🌸", "🌷"]; // Símbolos más tiernos
+            p.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.setProperty('--x-end', (Math.random() * 200 - 100) + 'px'); // Pequeño movimiento horizontal
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 6000);
+        }, 500);
+
+        function lanzarParticulasConfeti() {
+            for(let i=0; i<30; i++) {
+                const confeti = document.createElement('div');
+                confeti.className = 'particle'; // Reutilizamos la clase particle
+                confeti.innerHTML = ["💖", "✨"][Math.floor(Math.random()*2)];
+                confeti.style.left = Math.random() * 100 + "vw";
+                confeti.style.top = Math.random() * 100 + "vh"; // Aparecen por toda la pantalla
+                confeti.style.animation = `burst 1.5s ease-out forwards`; // Nueva animación de burst
+                confeti.style.setProperty('--x-end', (Math.random() * 500 - 250) + 'px');
+                confeti.style.setProperty('--y-end', (Math.random() * 500 - 250) + 'px');
+                document.body.appendChild(confeti);
+                setTimeout(() => confeti.remove(), 1500);
+            }
+        }
+    </script>
+</body>
+</html>
