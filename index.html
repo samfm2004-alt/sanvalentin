@@ -29,8 +29,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            /* TU IMAGEN DE FONDO APLICADA */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.ibb.co/KxQq4HgP/image.jpg');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.ibb.co/HpFPSvRp/image.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -57,26 +56,26 @@
             backdrop-filter: blur(20px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.7);
             text-align: center;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
         }
 
-        .foto-maridaje {
-            width: 160px;
-            height: 160px;
+        .foto-pregunta {
+            width: 180px;
+            height: 180px;
             margin: 0 auto 25px;
-            border-radius: 50%;
+            border-radius: 20px;
             padding: 6px;
             background: linear-gradient(45deg, var(--neon-blue), var(--deep-blue));
             box-shadow: 0 0 30px rgba(0, 210, 255, 0.4);
         }
 
-        .foto-maridaje img {
+        .foto-pregunta img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: 15px;
             object-fit: cover;
-            border: 4px solid #0a0b10;
+            border: 3px solid #0a0b10;
         }
 
         h2 {
@@ -95,7 +94,8 @@
             border-radius: 15px;
             border-left: 4px solid var(--neon-blue);
             text-align: left;
-            font-size: 14px;
+            font-size: 13.5px;
+            line-height: 1.5;
         }
 
         .botones {
@@ -161,25 +161,25 @@
     <div class="stars"></div>
 
     <audio id="musica" loop>
-        <source src="https://docs.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+        <source src="https://files.catbox.moe/101r8p.mp3" type="audio/mpeg">
     </audio>
 
     <div id="p1" class="pantalla">
         <div class="carta">
-            <div class="foto-maridaje">
-                <img src="https://docs.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
-            </div>
-            <h2>Para ti, Choquito ♡</h2>
-            <p>Escribir esto me hace pensar en todo lo que hemos vivido... Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. ♡</p>
+            <div style="font-size: 50px; margin-bottom: 15px;">✉️</div>
+            <h2>Hola, Choquito ♡</h2>
+            <p>Tengo un mensaje que sale desde lo más profundo de mi corazón... ♡</p>
             <button class="btn-principal" onclick="iniciar()">Entrar con amor ♡</button>
         </div>
     </div>
 
     <div id="p2" class="pantalla oculta">
         <div class="carta">
-            <div style="font-size: 50px; margin-bottom: 10px;">✨</div>
+            <div class="foto-pregunta">
+                <img src="https://i.ibb.co/KxQq4HgP/image.jpg" alt="Foto Choquito">
+            </div>
             <h2>Choquito... ♡</h2>
-            <p>¿Quieres ser mi San Valentín este año? ♡</p>
+            <p>¿Quieres ser mi San Valentín? ♡</p>
             <div class="botones">
                 <button id="btnSi" class="btn-principal" onclick="aceptar(event)">¡SÍ! ♡</button>
                 <button id="btnNo" onmouseover="huir()">No</button>
@@ -190,32 +190,34 @@
     <div id="p3" class="pantalla oculta">
         <div class="carta">
             <h2>Mi Amor Eterno... ♡</h2>
-            <p style="text-align: left; font-style: italic;">
-                "No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre o cuando siento tu presencia cerca. Eres mi primer pensamiento al despertar y mi último suspiro al dormir." ♡
+            <p style="text-align: left; font-size: 15px;">
+                Escribir esto me hace pensar en todo lo que hemos vivido. Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre o cuando siento tu presencia cerca. ♡<br><br>
+                Eres mi primer pensamiento al despertar y mi último suspiro al dormir. Gracias por ser mi apoyo incondicional, mi confidente en los días grises y el amor más real que he conocido. ♡<br><br>
+                Nadie me conoce como tú, y nadie tiene esa magia para hacerme sentir en casa con solo una mirada. Te amo más de lo que las palabras pueden expresar. ♡
             </p>
-            <button class="btn-principal" onclick="navegar('p3', 'p4')">Por qué te elijo ♡</button>
+            <button class="btn-principal" onclick="navegar('p3', 'p4')">Por qué estamos juntos ♡</button>
         </div>
     </div>
 
     <div id="p4" class="pantalla oculta">
         <div class="carta">
             <h2>Por esto y más... ♡</h2>
-            <div class="razon-item">✨ <b>Tu paz:</b> Porque en medio de cualquier caos, tus abrazos son el refugio donde todo vuelve a estar bien.</div>
-            <div class="razon-item">✨ <b>Tu alegría:</b> Por esa forma tan tuya de hacerme reír hasta que me duele la cara.</div>
-            <div class="razon-item">✨ <b>Nuestra conexión:</b> Porque me encanta que no necesitemos palabras para saber qué pensamos.</div>
-            <div class="razon-item">✨ <b>Tu paciencia:</b> Por cómo me escuchas, me cuidas y me das fuerzas siempre.</div>
-            <button class="btn-principal" onclick="navegar('p4', 'p5')">Algo más ♡</button>
+            <div class="razon-item">✨ <b>Tu paz:</b> Porque en medio de cualquier caos, tus abrazos son el único refugio donde todo vuelve a estar bien.</div>
+            <div class="razon-item">✨ <b>Tu alegría:</b> Por esa forma tan tuya de hacerme reír hasta que me duele la cara, incluso cuando el mundo se siente pesado.</div>
+            <div class="razon-item">✨ <b>Nuestra conexión:</b> Porque me encanta que no necesitemos palabras para saber qué estamos pensando.</div>
+            <div class="razon-item">✨ <b>Tu paciencia:</b> Por cómo me escuchas, me cuidas y me das fuerzas cuando yo siento que no puedo más.</div>
+            <div class="razon-item">✨ <b>Nuestro equipo:</b> Porque hemos aprendido a crecer juntos, superando miedos y construyendo un nosotros que amo proteger.</div>
+            <div class="razon-item">✨ <b>Tu esencia:</b> Por la bondad infinita de tu corazón y por la luz que irradias en mi vida cada día.</div>
+            <button class="btn-principal" onclick="navegar('p4', 'p5')">Te amo ♡</button>
         </div>
     </div>
 
     <div id="p5" class="pantalla oculta">
         <div class="carta">
-            <h2>Te amo Choquito ♡</h2>
-            <div class="razon-item">✨ <b>Nuestro equipo:</b> Porque hemos aprendido a crecer juntos, superando miedos y construyendo un nosotros.</div>
-            <div class="razon-item">✨ <b>Tu esencia:</b> Por la bondad infinita de tu corazón y la luz que irradias cada día.</div>
-            <p>Nadie me conoce como tú. Gracias por ser mi apoyo incondicional y el amor más real.</p>
+            <h2>¡Te amo Choquito! ♡</h2>
+            <p>Gracias por ser mi lugar seguro y mi aventura favorita.</p>
             <div style="font-size: 60px; margin: 20px;">👩‍❤️‍👨♡</div>
-            <p style="color: var(--neon-blue); font-weight: bold;">Te amo más de lo que las palabras expresan.</p>
+            <p style="color: var(--neon-blue); font-weight: bold; font-size: 18px;">¡Feliz San Valentín hoy y siempre! ♡</p>
         </div>
     </div>
 
@@ -225,16 +227,15 @@
         const btnNo = document.getElementById('btnNo');
         let sizeSi = 1;
 
-        // FRASES DIVERTIDAS PARA EL NO
         const frasesDivertidas = [
             "¿Seguro, Choquito? ♡",
-            "¡Casi lo logras! 😂",
-            "Nop, por ahí no es ♡",
+            "¡Por ahí no! 😂",
             "¡Inténtalo otra vez! 😋",
-            "¿Ni por un besito? ♡",
-            "¡Ese botón está roto! ♡",
-            "Piénsalo bien... 🥺",
-            "¡Ups! Se movió ♡"
+            "¿Ni por un chocolate? ♡",
+            "¡Casi me das! ♡",
+            "Error 404: No disponible ♡",
+            "¡Andas lento! ♡",
+            "¡Prueba el otro botón! ♡"
         ];
 
         function iniciar() {
@@ -251,10 +252,8 @@
             const x = Math.random() * 100 - 50;
             const y = Math.random() * 60 - 30;
             btnNo.style.transform = `translate(${x}px, ${y}px)`;
-            sizeSi += 0.3; // El botón SI crece más rápido para que sea fácil darle
+            sizeSi += 0.3; 
             btnSi.style.transform = `scale(${sizeSi})`;
-            
-            // Cambia a frases divertidas
             btnNo.innerText = frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)];
         }
 
