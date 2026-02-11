@@ -5,111 +5,284 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Choquito ♡</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500;700&display=swap');
+
+        :root {
+            --neon-blue: #00d2ff;
+            --deep-blue: #0072ff;
+            --bg-dark: #050608;
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Georgia', serif;
+            font-family: 'Quicksand', sans-serif;
+            background: var(--bg-dark);
+            color: white;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            color: white;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         .stars {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            /* Aquí está tu imagen de fondo */
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://ibb.co/KxQq4HgP');
+            /* TU IMAGEN DE FONDO APLICADA */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.ibb.co/KxQq4HgP/image.jpg');
             background-size: cover;
             background-position: center;
         }
 
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 500px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin: 20px;
+        .pantalla {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        h1 { font-size: 1.8rem; color: #ffb7c5; }
-        .text-body { text-align: left; font-size: 0.95rem; line-height: 1.6; }
-        .highlight { color: #ffdae0; font-weight: bold; }
-        
-        .buttons { margin-top: 30px; position: relative; height: 60px; }
-        
+        .oculta { opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.9); filter: blur(10px); }
+
+        .carta {
+            width: 90%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 40px 25px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .foto-maridaje {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--deep-blue));
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.4);
+        }
+
+        .foto-maridaje img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #0a0b10;
+        }
+
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+        }
+
+        p { font-size: 16px; line-height: 1.8; color: #d1d1d1; }
+
+        .razon-item {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 4px solid var(--neon-blue);
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+            min-height: 80px;
+        }
+
         button {
-            padding: 12px 25px;
-            font-size: 1.1rem;
+            padding: 14px 30px;
             border: none;
             border-radius: 50px;
+            font-weight: 700;
             cursor: pointer;
-            transition: 0.3s;
-            font-weight: bold;
+            transition: all 0.3s;
+            font-family: 'Quicksand', sans-serif;
         }
 
-        #btnSi { background: #ff4d6d; color: white; margin-right: 10px; }
-        #btnNo { background: #555; color: white; position: absolute; }
+        .btn-principal {
+            background: linear-gradient(45deg, var(--neon-blue), var(--deep-blue));
+            color: white;
+        }
 
-        .footer-msg { margin-top: 20px; font-style: italic; color: #ccc; }
+        #btnNo {
+            background: rgba(255, 75, 43, 0.1);
+            color: #ff4b2b;
+            border: 1px solid rgba(255, 75, 43, 0.3);
+            position: relative;
+        }
+
+        .corazon {
+            position: absolute;
+            color: var(--neon-blue);
+            pointer-events: none;
+            animation: floatUp 5s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+
+        .confeti {
+            position: fixed;
+            font-size: 25px;
+            z-index: 100;
+            pointer-events: none;
+            animation: explosion 1.5s ease-out forwards;
+        }
+
+        @keyframes explosion {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
     <div class="stars"></div>
 
-    <div class="container">
-        <h1>¿Quieres ser mi San Valentín? ♡</h1>
-        
-        <div class="text-body">
-            <p><strong>Tu paz:</strong> Porque en medio de cualquier caos, tus abrazos son el único refugio donde todo vuelve a estar bien. ♡</p>
-            <p><strong>Tu alegría:</strong> Por esa forma tan tuya de hacerme reír hasta que me duele la cara. ♡</p>
-            <p><strong>Nuestra conexión:</strong> Porque me encanta que no necesitemos palabras. ♡</p>
-            <p><strong>Tu paciencia:</strong> Por cómo me escuchas y me das fuerzas cuando siento que no puedo más. ♡</p>
-            <p><strong>Nuestro equipo:</strong> Porque amo proteger este "nosotros". ♡</p>
-            <p><strong>Tu esencia:</strong> Por la luz que irradias en mi vida cada día. ♡</p>
-            <hr style="border: 0.5px solid rgba(255,255,255,0.2)">
-            <p><em>"Eres mi primer pensamiento al despertar y mi último suspiro al dormir... Te amo más de lo que las palabras pueden expresar."</em></p>
-            <p style="text-align: center; font-size: 1.2rem;"><strong>Te amo Choquito ♡</strong></p>
-        </div>
+    <audio id="musica" loop>
+        <source src="https://docs.google.com/uc?export=download&id=1jdFpmeUf4Mx45bMiG1M5wdvCjkp8TP3g" type="audio/mpeg">
+    </audio>
 
-        <div class="buttons">
-            <button id="btnSi" onclick="aceptar()">¡SÍ! ♡</button>
-            <button id="btnNo" onmouseover="moverBoton(this)">No</button>
+    <div id="p1" class="pantalla">
+        <div class="carta">
+            <div class="foto-maridaje">
+                <img src="https://docs.google.com/uc?export=view&id=1F9mykC5-Clu2IhqSfEhwhnikP73LXuO5">
+            </div>
+            <h2>Para ti, Choquito ♡</h2>
+            <p>Escribir esto me hace pensar en todo lo que hemos vivido... Eres esa persona que llegó a mi vida para darle un sentido completamente nuevo. ♡</p>
+            <button class="btn-principal" onclick="iniciar()">Entrar con amor ♡</button>
+        </div>
+    </div>
+
+    <div id="p2" class="pantalla oculta">
+        <div class="carta">
+            <div style="font-size: 50px; margin-bottom: 10px;">✨</div>
+            <h2>Choquito... ♡</h2>
+            <p>¿Quieres ser mi San Valentín este año? ♡</p>
+            <div class="botones">
+                <button id="btnSi" class="btn-principal" onclick="aceptar(event)">¡SÍ! ♡</button>
+                <button id="btnNo" onmouseover="huir()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="p3" class="pantalla oculta">
+        <div class="carta">
+            <h2>Mi Amor Eterno... ♡</h2>
+            <p style="text-align: left; font-style: italic;">
+                "No se trata solo de estar juntos, se trata de cómo me haces sentir cuando escucho tu nombre o cuando siento tu presencia cerca. Eres mi primer pensamiento al despertar y mi último suspiro al dormir." ♡
+            </p>
+            <button class="btn-principal" onclick="navegar('p3', 'p4')">Por qué te elijo ♡</button>
+        </div>
+    </div>
+
+    <div id="p4" class="pantalla oculta">
+        <div class="carta">
+            <h2>Por esto y más... ♡</h2>
+            <div class="razon-item">✨ <b>Tu paz:</b> Porque en medio de cualquier caos, tus abrazos son el refugio donde todo vuelve a estar bien.</div>
+            <div class="razon-item">✨ <b>Tu alegría:</b> Por esa forma tan tuya de hacerme reír hasta que me duele la cara.</div>
+            <div class="razon-item">✨ <b>Nuestra conexión:</b> Porque me encanta que no necesitemos palabras para saber qué pensamos.</div>
+            <div class="razon-item">✨ <b>Tu paciencia:</b> Por cómo me escuchas, me cuidas y me das fuerzas siempre.</div>
+            <button class="btn-principal" onclick="navegar('p4', 'p5')">Algo más ♡</button>
+        </div>
+    </div>
+
+    <div id="p5" class="pantalla oculta">
+        <div class="carta">
+            <h2>Te amo Choquito ♡</h2>
+            <div class="razon-item">✨ <b>Nuestro equipo:</b> Porque hemos aprendido a crecer juntos, superando miedos y construyendo un nosotros.</div>
+            <div class="razon-item">✨ <b>Tu esencia:</b> Por la bondad infinita de tu corazón y la luz que irradias cada día.</div>
+            <p>Nadie me conoce como tú. Gracias por ser mi apoyo incondicional y el amor más real.</p>
+            <div style="font-size: 60px; margin: 20px;">👩‍❤️‍👨♡</div>
+            <p style="color: var(--neon-blue); font-weight: bold;">Te amo más de lo que las palabras expresan.</p>
         </div>
     </div>
 
     <script>
-        const frasesNo = [
-            "¿Seguro/a? Piénsalo bien... ♡",
-            "¡Ese botón no funciona! jaja ♡",
-            "Inténtalo de nuevo, Choquito ♡",
-            "¿Ni por un chocolate? ♡",
-            "Error 404: Respuesta no válida ♡"
+        const musica = document.getElementById('musica');
+        const btnSi = document.getElementById('btnSi');
+        const btnNo = document.getElementById('btnNo');
+        let sizeSi = 1;
+
+        // FRASES DIVERTIDAS PARA EL NO
+        const frasesDivertidas = [
+            "¿Seguro, Choquito? ♡",
+            "¡Casi lo logras! 😂",
+            "Nop, por ahí no es ♡",
+            "¡Inténtalo otra vez! 😋",
+            "¿Ni por un besito? ♡",
+            "¡Ese botón está roto! ♡",
+            "Piénsalo bien... 🥺",
+            "¡Ups! Se movió ♡"
         ];
 
-        function moverBoton(btn) {
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.left = x + "px";
-            btn.style.top = y + "px";
-            
-            // Cambiar el texto a algo divertido
-            const fraseRandom = frasesNo[Math.floor(Math.random() * frasesNo.length)];
-            btn.innerHTML = fraseRandom;
+        function iniciar() {
+            musica.play();
+            navegar('p1', 'p2');
         }
 
-        function aceptar() {
-            alert("¡SABÍA QUE DIRÍAS QUE SÍ! ♡ Nos vemos en nuestra cita, Choquito. Te amo infinito.");
-            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Opcional: link a una canción
+        function navegar(actual, siguiente) {
+            document.getElementById(actual).classList.add('oculta');
+            document.getElementById(siguiente).classList.remove('oculta');
         }
+
+        function huir() {
+            const x = Math.random() * 100 - 50;
+            const y = Math.random() * 60 - 30;
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
+            sizeSi += 0.3; // El botón SI crece más rápido para que sea fácil darle
+            btnSi.style.transform = `scale(${sizeSi})`;
+            
+            // Cambia a frases divertidas
+            btnNo.innerText = frasesDivertidas[Math.floor(Math.random() * frasesDivertidas.length)];
+        }
+
+        function aceptar(e) {
+            for (let i = 0; i < 30; i++) {
+                const confeti = document.createElement('div');
+                confeti.className = 'confeti';
+                confeti.innerHTML = '♡';
+                confeti.style.left = e.clientX + 'px';
+                confeti.style.top = e.clientY + 'px';
+                confeti.style.setProperty('--x', (Math.random() * 400 - 200) + 'px');
+                confeti.style.setProperty('--y', (Math.random() * 400 - 200) + 'px');
+                document.body.appendChild(confeti);
+                setTimeout(() => confeti.remove(), 1500);
+            }
+            setTimeout(() => navegar('p2', 'p3'), 1000);
+        }
+
+        setInterval(() => {
+            const c = document.createElement("div");
+            c.className = "corazon";
+            c.innerHTML = "♡";
+            c.style.left = Math.random() * 100 + "vw";
+            c.style.bottom = "-20px";
+            c.style.fontSize = Math.random() * 15 + 10 + "px";
+            document.body.appendChild(c);
+            setTimeout(() => c.remove(), 5000);
+        }, 300);
     </script>
 </body>
 </html>
